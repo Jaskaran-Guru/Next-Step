@@ -1,5 +1,6 @@
 /* ==========================================================================
-   COMMON COMPONENTS: CARDS, BUTTONS, BADGES, MODALS
+   COMPONENTS - NEXTSTEP OS
+   Clean Light Mode & Futuristic AI Dark Mode
    ========================================================================== */
 
 /* Typography & Headers */
@@ -13,7 +14,7 @@
 .section-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--text-main);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   display: flex;
   align-items: center;
@@ -26,29 +27,57 @@
   margin-top: 4px;
 }
 
-/* Hero Banner */
+/* Hybrid Hero Banner - Matches image specification */
 .hero-banner {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&auto=format&fit=crop&q=80');
-  background-size: cover;
-  background-position: center;
   border-radius: var(--radius-xl);
-  border: 1px solid var(--border-medium);
-  padding: 38px 42px;
+  padding: 36px 40px;
   margin-bottom: 32px;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-lg), 0 0 40px rgba(37, 99, 235, 0.15);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-smooth);
 }
 
-.hero-banner::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
-  height: 100%;
-  background: radial-gradient(circle at 70% 30%, rgba(6, 182, 212, 0.2), transparent 70%);
-  pointer-events: none;
+/* In Light Mode: Deep Midnight Navy background card with Electric Blue button */
+[data-theme="light"] .hero-banner {
+  background: linear-gradient(135deg, var(--brand-primary-dark) 0%, #172a54 100%);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .hero-banner .hero-title {
+  color: #ffffff;
+}
+
+[data-theme="light"] .hero-banner .hero-desc {
+  color: #cbd5e1;
+}
+
+[data-theme="light"] .hero-banner .hero-badge {
+  background: rgba(37, 99, 235, 0.35);
+  border: 1px solid rgba(147, 197, 253, 0.5);
+  color: #93c5fd;
+}
+
+/* In Dark Mode: Futuristic AI Learning Space with AI Violet & Cyan glows */
+[data-theme="dark"] .hero-banner {
+  background: linear-gradient(135deg, #111827 0%, #1e1b4b 50%, #0f172a 100%);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(139, 92, 246, 0.15);
+}
+
+[data-theme="dark"] .hero-banner .hero-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .hero-banner .hero-desc {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .hero-banner .hero-badge {
+  background: rgba(139, 92, 246, 0.25);
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  color: #c4b5fd;
 }
 
 .hero-content {
@@ -61,28 +90,25 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 12px;
+  padding: 5px 14px;
   border-radius: var(--radius-full);
-  background: rgba(37, 99, 235, 0.35);
-  border: 1px solid var(--primary-light);
-  color: #93c5fd;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
   margin-bottom: 14px;
 }
 
 .hero-title {
   font-size: 2.2rem;
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.25;
   margin-bottom: 12px;
   letter-spacing: -0.02em;
 }
 
 .hero-desc {
   font-size: 1rem;
-  color: #cbd5e1;
   margin-bottom: 24px;
   line-height: 1.6;
 }
@@ -100,8 +126,8 @@
 .filter-pill {
   padding: 8px 18px;
   border-radius: var(--radius-full);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   color: var(--text-secondary);
   font-size: 0.88rem;
   font-weight: 600;
@@ -111,16 +137,16 @@
 }
 
 .filter-pill:hover {
-  background: var(--bg-tertiary);
-  color: var(--text-main);
-  border-color: var(--border-medium);
+  background: var(--bg-surface-secondary);
+  color: var(--text-primary);
+  border-color: var(--brand-primary);
 }
 
 .filter-pill.active {
-  background: var(--primary-color);
+  background: var(--brand-primary);
   color: #fff;
-  border-color: var(--primary-light);
-  box-shadow: 0 0 14px var(--primary-glow);
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 14px var(--glow-blue);
 }
 
 /* Batches Grid & Cards */
@@ -131,20 +157,21 @@
 }
 
 .batch-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all var(--transition-smooth);
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: var(--shadow-sm);
 }
 
 .batch-card:hover {
   transform: translateY(-4px);
   border-color: var(--border-glow);
-  box-shadow: var(--shadow-lg), var(--shadow-neon);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
 }
 
 .batch-thumbnail {
@@ -171,12 +198,12 @@
   left: 12px;
   padding: 4px 10px;
   border-radius: var(--radius-sm);
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(16, 28, 58, 0.88);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 0.72rem;
   font-weight: 800;
-  color: var(--accent-amber);
+  color: var(--brand-accent);
   text-transform: uppercase;
 }
 
@@ -186,7 +213,7 @@
   right: 12px;
   padding: 3px 8px;
   border-radius: var(--radius-sm);
-  background: rgba(16, 185, 129, 0.9);
+  background: rgba(22, 163, 74, 0.95);
   color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
@@ -205,7 +232,7 @@
 .batch-tagline {
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--accent-cyan);
+  color: var(--brand-accent);
   text-transform: uppercase;
   margin-bottom: 6px;
 }
@@ -215,7 +242,7 @@
   font-weight: 700;
   line-height: 1.35;
   margin-bottom: 12px;
-  color: var(--text-main);
+  color: var(--text-primary);
 }
 
 /* Faculty Avatars Row */
@@ -234,7 +261,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid var(--bg-secondary);
+  border: 2px solid var(--bg-surface);
   margin-left: -8px;
   object-fit: cover;
 }
@@ -264,14 +291,14 @@
 }
 
 .batch-features li svg {
-  color: var(--accent-emerald);
+  color: var(--status-success);
   flex-shrink: 0;
 }
 
 .batch-footer {
   margin-top: auto;
   padding-top: 16px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -285,7 +312,7 @@
 .current-price {
   font-size: 1.35rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .original-price {
@@ -310,10 +337,11 @@
   text-decoration: none;
 }
 
+/* Electric Blue Button */
 .btn-primary {
-  background: var(--primary-color);
+  background: var(--brand-primary);
   color: #fff;
-  box-shadow: 0 4px 14px var(--primary-glow);
+  box-shadow: 0 4px 14px var(--glow-blue);
 }
 
 .btn-primary:hover {
@@ -321,38 +349,51 @@
   transform: translateY(-1px);
 }
 
-.btn-secondary {
-  background: var(--bg-tertiary);
-  color: var(--text-main);
-  border: 1px solid var(--border-subtle);
-}
-
-.btn-secondary:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-medium);
-}
-
-.btn-amber {
-  background: linear-gradient(135deg, var(--accent-amber), #ea580c);
+/* AI Violet Button */
+.btn-violet {
+  background: var(--brand-secondary);
   color: #fff;
-  box-shadow: 0 4px 14px var(--shadow-gold);
+  box-shadow: 0 4px 14px var(--glow-violet);
 }
 
-.btn-amber:hover {
+.btn-violet:hover {
   filter: brightness(1.1);
   transform: translateY(-1px);
 }
 
+/* Neon Cyan Button */
+.btn-cyan {
+  background: var(--brand-accent);
+  color: #0f172a;
+  box-shadow: 0 4px 14px var(--glow-cyan);
+}
+
+.btn-cyan:hover {
+  background: var(--brand-accent-soft);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--bg-surface-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-surface-tertiary);
+  border-color: var(--border-color);
+}
+
 .btn-enrolled {
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--accent-emerald);
-  border: 1px solid var(--accent-emerald);
+  background: rgba(22, 163, 74, 0.15);
+  color: var(--status-success);
+  border: 1px solid var(--status-success);
 }
 
 .btn-enrolled:hover {
-  background: rgba(244, 63, 94, 0.15);
-  color: var(--accent-rose);
-  border-color: var(--accent-rose);
+  background: rgba(220, 38, 38, 0.15);
+  color: var(--status-error);
+  border-color: var(--status-error);
 }
 
 /* MODAL SYSTEM */
@@ -362,7 +403,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(8px);
   display: none;
   align-items: center;
@@ -376,12 +417,12 @@
 }
 
 .modal-box {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-medium);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   width: 100%;
   max-width: 600px;
-  box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--shadow-lg);
   animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   overflow: hidden;
 }
@@ -393,7 +434,7 @@
 
 .modal-header {
   padding: 20px 24px;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -402,6 +443,7 @@
 .modal-title {
   font-size: 1.25rem;
   font-weight: 800;
+  color: var(--text-primary);
 }
 
 .modal-close {
@@ -413,7 +455,7 @@
 }
 
 .modal-close:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .modal-body {
@@ -434,11 +476,11 @@
 }
 
 .toast {
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-medium);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 14px 20px;
-  color: #fff;
+  color: var(--text-primary);
   font-size: 0.9rem;
   font-weight: 600;
   display: flex;
@@ -454,6 +496,6 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
-.toast.success { border-left: 4px solid var(--accent-emerald); }
-.toast.error { border-left: 4px solid var(--accent-rose); }
-.toast.info { border-left: 4px solid var(--primary-light); }
+.toast.success { border-left: 4px solid var(--status-success); }
+.toast.error { border-left: 4px solid var(--status-error); }
+.toast.info { border-left: 4px solid var(--brand-primary); }

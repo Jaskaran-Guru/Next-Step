@@ -65,6 +65,12 @@
           <span id="header-coins-count">850</span>
         </div>
 
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="Toggle Light / Dark Mode">
+          <i data-lucide="sun" id="theme-icon"></i>
+          <span id="theme-label">Light</span>
+        </button>
+
         <!-- User Profile Badge -->
         <div class="user-profile-badge" id="profile-btn" title="Click to view/edit profile">
           <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" alt="Avatar" class="user-avatar" id="header-user-avatar">
@@ -103,15 +109,15 @@
       <a class="nav-item" data-view="tests" id="nav-tests">
         <i data-lucide="award"></i>
         <span>AITS Test Series</span>
-        <span class="nav-badge" style="background: var(--accent-amber);">CBT</span>
+        <span class="nav-badge" style="background: var(--brand-accent); color: #0f172a;">CBT</span>
       </a>
 
-      <div class="nav-section-title">AI & RESOURCES</div>
+      <div class="nav-section-title">AI & INTELLIGENCE</div>
 
       <a class="nav-item" data-view="doubts" id="nav-doubts">
         <i data-lucide="sparkles"></i>
-        <span>PW Saarthi AI</span>
-        <span class="nav-badge" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-cyan));">24x7</span>
+        <span>AI Saarthi Tutor</span>
+        <span class="nav-badge ai">24x7</span>
       </a>
 
       <a class="nav-item" data-view="khazana" id="nav-khazana">
@@ -121,7 +127,7 @@
 
       <a class="nav-item" data-view="analytics" id="nav-analytics">
         <i data-lucide="bar-chart-2"></i>
-        <span>My Analytics</span>
+        <span>Learning Analytics</span>
       </a>
     </aside>
 
@@ -130,15 +136,19 @@
       
       <!-- VIEW 1: EXPLORE BATCHES -->
       <section id="view-batches" class="page-view active">
-        <!-- Hero Banner -->
+        <!-- Hero Banner: NextStep OS Saarthi Hybrid -->
         <div class="hero-banner">
           <div class="hero-content">
-            <span class="hero-badge">⚡ NextStep PW Admissions 2026-27</span>
-            <h1 class="hero-title">Prepare With India's Top Educators at Most Affordable Fees</h1>
-            <p class="hero-desc">Live interactive classes, Daily Practice Problems (DPP) with video solutions, All-India CBT Test Series, and 24x7 Saarthi AI Doubt Engine.</p>
-            <div style="display: flex; gap: 14px;">
-              <button class="btn btn-primary" onclick="window.switchView('batches')">Explore All Batches</button>
-              <button class="btn btn-secondary" onclick="window.switchView('doubts')">Ask Doubt to AI Saarthi</button>
+            <span class="hero-badge">🧠 AI LEARNING SPACE</span>
+            <h1 class="hero-title">Think. Learn. Build.</h1>
+            <p class="hero-desc">One Search. Every Learning Need. Zero Fluff. Live interactive batches, Kota top faculty, NTA simulated test series, and 24x7 AI Saarthi doubt tutoring.</p>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <button class="btn btn-violet" onclick="window.switchView('doubts')">
+                <i data-lucide="sparkles"></i> Launch AI Tutor →
+              </button>
+              <button class="btn btn-primary" onclick="window.switchView('batches')">
+                Explore Learning →
+              </button>
             </div>
           </div>
         </div>

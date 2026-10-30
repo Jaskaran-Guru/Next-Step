@@ -4,13 +4,16 @@
  */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // 1. Initialize Icons
+  // 1. Initialize Theme
+  initTheme();
+
+  // 2. Initialize Icons
   if (window.lucide) window.lucide.createIcons();
 
-  // 2. Initialize App State & User Profile
+  // 3. Initialize App State & User Profile
   await AppState.initUser();
 
-  // 3. Initialize Views
+  // 4. Initialize Views
   await BatchesView.init();
   ClassroomView.init();
   await TestView.init();
@@ -18,16 +21,49 @@ document.addEventListener('DOMContentLoaded', async () => {
   await KhazanaView.init();
   await AnalyticsView.init();
 
-  // 4. Bind Global Navigation
+  // 5. Bind Global Navigation
   bindNavigation();
 
-  // 5. Bind Search and Profile
+  // 6. Bind Search, Profile & Theme Toggle
   bindSearchAndProfile();
 
-  // 6. Check initial route from hash
+  // 7. Check initial route from hash
   const initialHash = window.location.hash.replace('#', '') || 'batches';
   switchView(initialHash);
 });
+
+// Theme Management (Light & Dark Hybrid)
+function initTheme() {
+  const savedTheme = localStorage.getItem('nextstep_theme') || 'dark';
+  applyTheme(savedTheme);
+
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  toggleBtn?.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('nextstep_theme', newTheme);
+    showToast(`Switched to ${newTheme === 'dark' ? 'Dark AI Workspace' : 'Clean Light Mode'}`, 'info');
+  });
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const icon = document.getElementById('theme-icon');
+  const label = document.getElementById('theme-label');
+
+  if (icon && label) {
+    if (theme === 'dark') {
+      icon.setAttribute('data-lucide', 'sun');
+      label.textContent = 'Light';
+    } else {
+      icon.setAttribute('data-lucide', 'moon');
+      label.textContent = 'Dark';
+    }
+  }
+
+  if (window.lucide) window.lucide.createIcons();
+}
 
 // View Routing Switcher
 function switchView(viewId) {

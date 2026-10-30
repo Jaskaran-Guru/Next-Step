@@ -117,10 +117,9 @@ router.post('/ask', async (req, res) => {
     let solutionData = null;
 
     // Check if Gemini API Key is configured
-    if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY.trim().startsWith('AIzaSy')) {
+    if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY.trim().length > 10) {
       try {
-        const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY.trim()}`;
         
         const systemPrompt = `You are "PW Saarthi", an expert faculty at Physics Wallah. The student is preparing for ${user.targetExam || 'JEE/NEET'}.
 Answer the student's question clearly, step-by-step with formulas and Kota tricks.

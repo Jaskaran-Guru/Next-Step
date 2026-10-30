@@ -14,9 +14,9 @@
   background: #000;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-color);
   position: relative;
-  box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--shadow-lg);
 }
 
 .video-wrapper {
@@ -54,14 +54,14 @@
   position: relative;
   width: 100%;
   height: 6px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-full);
   cursor: pointer;
 }
 
 .timeline-progress {
   height: 100%;
-  background: var(--primary-color);
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
   border-radius: var(--radius-full);
   position: relative;
   width: 0%;
@@ -110,22 +110,22 @@
 }
 
 .ctrl-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--primary-light);
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--brand-accent);
 }
 
 .time-display {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  color: #cbd5e1;
+  color: #e2e8f0;
 }
 
 /* Speed & Quality Dropdowns */
 .ctrl-select {
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px solid var(--border-subtle);
-  color: #fff;
-  padding: 4px 8px;
+  background: var(--bg-surface-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 5px 10px;
   border-radius: var(--radius-sm);
   font-size: 0.78rem;
   font-weight: 700;
@@ -135,10 +135,11 @@
 /* Lecture Meta Card */
 .lecture-meta-card {
   margin-top: 18px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 22px;
+  box-shadow: var(--shadow-sm);
 }
 
 .lecture-header-row {
@@ -152,7 +153,7 @@
 .lecture-main-title {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
   line-height: 1.3;
 }
 
@@ -168,24 +169,25 @@
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--primary-light);
+  border: 2px solid var(--brand-primary);
 }
 
 /* Classroom Sidebar Drawer */
 .classroom-drawer {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 640px;
+  box-shadow: var(--shadow-sm);
 }
 
 .drawer-tabs {
   display: flex;
-  border-bottom: 1px solid var(--border-subtle);
-  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-surface-secondary);
 }
 
 .drawer-tab {
@@ -207,13 +209,13 @@
 }
 
 .drawer-tab:hover {
-  color: var(--text-main);
+  color: var(--text-primary);
 }
 
 .drawer-tab.active {
-  color: var(--primary-light);
-  border-bottom-color: var(--primary-color);
-  background: rgba(37, 99, 235, 0.06);
+  color: var(--brand-primary);
+  border-bottom-color: var(--brand-primary);
+  background: var(--bg-surface);
 }
 
 .drawer-content {
@@ -229,28 +231,30 @@
   gap: 14px;
   padding: 12px 14px;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
   margin-bottom: 10px;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .lecture-item:hover {
-  border-color: var(--primary-light);
-  background: var(--bg-card-hover);
+  border-color: var(--brand-primary);
+  background: var(--bg-surface-secondary);
 }
 
 .lecture-item.active {
-  border-color: var(--primary-color);
-  background: rgba(37, 99, 235, 0.12);
+  border-color: var(--brand-primary);
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0.02));
 }
 
 .lecture-index {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--bg-surface-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -259,8 +263,9 @@
 }
 
 .lecture-item.active .lecture-index {
-  background: var(--primary-color);
+  background: var(--brand-primary);
   color: #fff;
+  border-color: var(--brand-primary);
 }
 
 .lecture-item-info {
@@ -272,6 +277,7 @@
   font-weight: 700;
   margin-bottom: 4px;
   line-height: 1.3;
+  color: var(--text-primary);
 }
 
 .lecture-item-meta {
@@ -284,8 +290,8 @@
 
 /* Timestamped Notes Drawer */
 .notes-input-box {
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-secondary);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 14px;
   margin-bottom: 18px;
@@ -303,7 +309,7 @@
   font-size: 0.78rem;
   padding: 2px 8px;
   border-radius: var(--radius-sm);
-  background: var(--primary-color);
+  background: var(--brand-primary);
   color: #fff;
   font-weight: 700;
 }
@@ -311,23 +317,23 @@
 .notes-textarea {
   width: 100%;
   height: 70px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   padding: 8px 12px;
-  color: var(--text-main);
+  color: var(--text-primary);
   font-size: 0.85rem;
   resize: none;
   outline: none;
 }
 
 .notes-textarea:focus {
-  border-color: var(--primary-light);
+  border-color: var(--brand-primary);
 }
 
 .saved-note-item {
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-secondary);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 12px 14px;
   margin-bottom: 10px;
@@ -336,7 +342,7 @@
 }
 
 .saved-note-item:hover {
-  border-color: var(--border-medium);
+  border-color: var(--brand-primary);
 }
 
 .saved-note-header {
@@ -351,15 +357,15 @@
   font-size: 0.75rem;
   padding: 2px 6px;
   border-radius: var(--radius-sm);
-  background: rgba(37, 99, 235, 0.2);
-  color: var(--primary-light);
-  border: 1px solid rgba(37, 99, 235, 0.4);
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--brand-primary);
+  border: 1px solid rgba(37, 99, 235, 0.3);
   cursor: pointer;
   font-weight: 700;
 }
 
 .note-time-btn:hover {
-  background: var(--primary-color);
+  background: var(--brand-primary);
   color: #fff;
 }
 
@@ -372,12 +378,12 @@
 }
 
 .note-delete-btn:hover {
-  color: var(--accent-rose);
+  color: var(--status-error);
 }
 
 .note-text-body {
   font-size: 0.85rem;
-  color: #e2e8f0;
+  color: var(--text-secondary);
   line-height: 1.45;
 }
 

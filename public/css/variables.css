@@ -1,56 +1,56 @@
 /* ==========================================================================
-   NEXTSTEP (PHYSICS WALLAH EDITION) - DESIGN SYSTEM VARIABLES
+   NEXTSTEP OS (SAARTHI) - DESIGN SYSTEM VARIABLES & HYBRID TOKENS
+   Midnight Navy + Electric Blue + AI Violet + Neon Cyan
    ========================================================================== */
 
 :root {
-  /* Color Palette - Authentic PW Theme */
-  --bg-primary: #080c16;          /* Deepest Space Navy */
-  --bg-secondary: #0f172a;        /* Elevated Surface */
-  --bg-tertiary: #1e293b;         /* Card Surface */
-  --bg-card-hover: #26334d;       /* Hover state */
-  --bg-glass: rgba(15, 23, 42, 0.75);
-  --bg-glass-heavy: rgba(8, 12, 22, 0.88);
+  /* Core Brand Colors */
+  --brand-primary: #2563EB;       /* Electric Blue */
+  --brand-primary-dark: #101C3A;  /* Midnight Navy */
+  --brand-secondary: #8B5CF6;     /* AI Violet */
+  --brand-accent: #06B6D4;        /* Neon Cyan */
+  --brand-accent-soft: #67E8F9;   /* Light Cyan */
 
-  /* Signature Accents */
-  --primary-color: #2563eb;       /* PW Electric Cobalt */
-  --primary-hover: #1d4ed8;
-  --primary-glow: rgba(37, 99, 235, 0.35);
-  --primary-light: #3b82f6;
-
-  --accent-cyan: #06b6d4;        /* Cyan highlight */
-  --accent-cyan-glow: rgba(6, 182, 212, 0.3);
-
-  --accent-amber: #f59e0b;       /* PW Gold / Coins Accent */
-  --accent-amber-light: #fbbf24;
-  --accent-amber-glow: rgba(245, 158, 11, 0.35);
-
-  --accent-emerald: #10b981;     /* Success / Correct Answer */
-  --accent-rose: #f43f5e;        /* Error / Wrong Answer */
-  --accent-purple: #8b5cf6;      /* Marked for Review / Arjuna */
-
-  /* Text Colors */
-  --text-main: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #0f172a;
-
-  /* Borders */
+  /* Default to Dark Theme */
+  --bg-primary: #0B1120;
+  --bg-surface: #111827;
+  --bg-surface-secondary: #1E293B;
+  --bg-surface-tertiary: #172236;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --border-color: #334155;
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.15);
-  --border-glow: rgba(37, 99, 235, 0.5);
+  --border-glow: rgba(37, 99, 235, 0.45);
+  --primary-hover: #3B82F6;
 
-  /* Typography */
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Functional Colors (Dark) */
+  --status-success: #4ADE80;
+  --status-warning: #FBBF24;
+  --status-error: #F87171;
+  --status-info: #60A5FA;
+
+  /* Accent Glows & Gradients */
+  --glow-blue: rgba(37, 99, 235, 0.35);
+  --glow-violet: rgba(139, 92, 246, 0.35);
+  --glow-cyan: rgba(6, 182, 212, 0.3);
 
   /* Shadows */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
-  --shadow-neon: 0 0 25px rgba(37, 99, 235, 0.25);
-  --shadow-gold: 0 0 20px rgba(245, 158, 11, 0.25);
+  --shadow-glow: 0 0 25px rgba(37, 99, 235, 0.25);
+  --shadow-ai: 0 0 25px rgba(139, 92, 246, 0.25);
 
-  /* Border Radii */
+  /* Glassmorphism */
+  --bg-glass: rgba(17, 24, 39, 0.85);
+  --bg-glass-card: rgba(30, 41, 59, 0.7);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Radii */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -60,6 +60,37 @@
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* LIGHT THEME TOKENS */
+[data-theme="light"] {
+  --bg-primary: #F8FAFC;          /* Main Page */
+  --bg-surface: #FFFFFF;          /* Cards & Panels */
+  --bg-surface-secondary: #F1F5F9;/* Inputs & Secondary */
+  --bg-surface-tertiary: #E2E8F0;
+  --text-primary: #0F172A;        /* Headings */
+  --text-secondary: #475569;      /* Descriptions */
+  --text-muted: #94A3B8;          /* Supporting Labels */
+  --border-color: #E2E8F0;        /* Card Borders */
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border-glow: rgba(37, 99, 235, 0.3);
+  --primary-hover: #1D4ED8;       /* Hover State */
+
+  /* Functional Colors (Light) */
+  --status-success: #16A34A;
+  --status-warning: #D97706;
+  --status-error: #DC2626;
+  --status-info: #2563EB;
+
+  /* Shadow & Glass (Light) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.15);
+  --shadow-ai: 0 0 20px rgba(139, 92, 246, 0.15);
+
+  --bg-glass: rgba(255, 255, 255, 0.9);
+  --bg-glass-card: rgba(255, 255, 255, 0.85);
 }
 
 /* Global Reset */
@@ -72,11 +103,12 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
-  color: var(--text-main);
+  color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition-smooth), color var(--transition-smooth);
 }
 
 /* Custom Scrollbar */
@@ -88,9 +120,9 @@ body {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #223049;
+  background: var(--border-color);
   border-radius: var(--radius-full);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334466;
+  background: var(--brand-primary);
 }
