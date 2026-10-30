@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   ClassroomView.init();
   await TestView.init();
   await DoubtsView.init();
+  await StagesView.init();
   await KhazanaView.init();
   await AnalyticsView.init();
 

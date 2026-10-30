@@ -14,6 +14,7 @@ const testsRoutes = require('./routes/tests.routes');
 const doubtsRoutes = require('./routes/doubts.routes');
 const materialsRoutes = require('./routes/materials.routes');
 const analyticsRoutes = require('./routes/analytics.routes');
+const stagesRoutes = require('./routes/stages.routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,6 +37,7 @@ app.use('/api/tests', testsRoutes);
 app.use('/api/doubts', doubtsRoutes);
 app.use('/api/materials', materialsRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/stages', stagesRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

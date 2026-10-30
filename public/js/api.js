@@ -148,6 +148,31 @@ const API = {
   async getAnalytics() {
     const res = await fetch(`${API_BASE}/analytics/dashboard`);
     return res.json();
+  },
+
+  // Life-Stage & Career Navigator (Birth to Career)
+  async getStages() {
+    const res = await fetch(`${API_BASE}/stages`);
+    return res.json();
+  },
+
+  async getStageDetails(stageKey) {
+    const res = await fetch(`${API_BASE}/stages/${stageKey}`);
+    return res.json();
+  },
+
+  async askStageAdvisor(childName, childAge, currentStage, parentQuery) {
+    const res = await fetch(`${API_BASE}/stages/advise`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ childName, childAge, currentStage, parentQuery })
+    });
+    return res.json();
+  },
+
+  async getSavedRoadmaps() {
+    const res = await fetch(`${API_BASE}/stages/saved-roadmaps`);
+    return res.json();
   }
 };
 

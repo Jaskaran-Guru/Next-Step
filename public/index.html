@@ -129,11 +129,91 @@
         <i data-lucide="bar-chart-2"></i>
         <span>Learning Analytics</span>
       </a>
+
+      <div class="nav-section-title">LIFECYCLE & CAREER</div>
+
+      <a class="nav-item" data-view="stages" id="nav-stages">
+        <i data-lucide="compass"></i>
+        <span>Child & Career Navigator</span>
+        <span class="nav-badge" style="background: var(--brand-secondary); color: #fff;">0-25 Yrs</span>
+      </a>
     </aside>
 
     <!-- MAIN APP WRAPPER -->
     <main class="main-wrapper">
       
+      <!-- VIEW: CHILD & CAREER LIFECYCLE NAVIGATOR (BIRTH TO CAREER) -->
+      <section id="view-stages" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="compass" style="color: var(--brand-secondary);"></i> Child & Career Lifecycle Navigator</h1>
+            <p class="section-subtitle">Parenting, schooling, stream selection, high-ROI degrees & zero-unemployment career roadmap</p>
+          </div>
+          <button class="btn btn-violet" onclick="document.getElementById('advisor-query-box').scrollIntoView({ behavior: 'smooth' })">
+            <i data-lucide="sparkles"></i> Ask AI Child Advisor
+          </button>
+        </div>
+
+        <!-- Age Stage Selector Pills -->
+        <div class="filter-bar" id="stage-pills-bar" style="margin-bottom: 24px;">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Active Stage Curriculum & Milestones Container -->
+        <div id="stage-details-content">
+          <!-- Dynamically populated by stagesView.js -->
+        </div>
+
+        <!-- AI Parent & Career Advisor Form -->
+        <div class="lecture-meta-card" id="advisor-query-box" style="margin-top: 36px; border: 1px solid var(--brand-secondary); box-shadow: var(--shadow-ai);">
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+            <div class="logo-badge" style="background: linear-gradient(135deg, var(--brand-secondary), var(--brand-accent)); width: 44px; height: 44px;">
+              <i data-lucide="bot"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">Saarthi AI Parent & Child Development Advisor</h3>
+              <p style="font-size: 0.82rem; color: var(--text-secondary);">Ask any specific concern about your child's age, schooling, streams, personality, or degree options. Powered by Gemini API & persisted to MongoDB Atlas.</p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Child's Name (Optional)</label>
+              <input type="text" id="advisor-child-name" placeholder="e.g. Aarav, Ananya, Kabir" style="width: 100%; padding: 10px 14px; background: var(--bg-surface-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); outline: none;">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Child's Exact Age or Class</label>
+              <input type="text" id="advisor-child-age" placeholder="e.g. 2.5 Years, Class 10th, 1st Year B.Tech" style="width: 100%; padding: 10px 14px; background: var(--bg-surface-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); outline: none;">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Your Specific Query / Concern / Goal</label>
+            <textarea id="advisor-query-input" rows="3" placeholder="e.g. 'My 3-year-old child has delayed speech and watches screen. What daily routine and playway activities should we start?' OR 'My daughter is scoring 92% in 10th and confused between PCB vs Commerce with Math. Which has better career ROI?'" style="width: 100%; padding: 12px 14px; background: var(--bg-surface-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); outline: none; resize: none; font-family: inherit; font-size: 0.9rem;"></textarea>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+            <span style="font-size: 0.78rem; color: var(--text-muted);">💡 Focus: Cognitive Growth + Emotional Resilience + Zero-Unemployment Guarantee</span>
+            <button class="btn btn-violet" id="ask-advisor-btn">
+              <i data-lucide="sparkles"></i> Generate Personalized Child Roadmap
+            </button>
+          </div>
+
+          <!-- Real-Time AI Advisor Result Card -->
+          <div id="advisor-results-container"></div>
+        </div>
+
+        <!-- Saved Roadmaps History -->
+        <div class="lecture-meta-card" style="margin-top: 24px;">
+          <h4 style="font-size: 1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="history"></i> Saved Life-Stage Blueprints in Your MongoDB Account
+          </h4>
+          <div id="saved-roadmaps-list">
+            <!-- Loaded dynamically from MongoDB -->
+          </div>
+        </div>
+      </section>
+
       <!-- VIEW 1: EXPLORE BATCHES -->
       <section id="view-batches" class="page-view active">
         <!-- Hero Banner: NextStep OS Saarthi Hybrid -->
@@ -578,6 +658,7 @@
   <script src="js/views/dppView.js"></script>
   <script src="js/views/testView.js"></script>
   <script src="js/views/doubtsView.js"></script>
+  <script src="js/views/stagesView.js"></script>
   <script src="js/views/khazanaView.js"></script>
   <script src="js/views/analyticsView.js"></script>
   <script src="js/app.js"></script>
