@@ -29,8 +29,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   await TestView.init();
   await DoubtsView.init();
   await StagesView.init();
+  await CareerView.init();
+  await ParentView.init();
   await KhazanaView.init();
   await AnalyticsView.init();
+  UniversalSearch.init();
 
   // 7. Bind Global Navigation
   bindNavigation();
@@ -46,6 +49,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const initialHash = window.location.hash.replace('#', '') || 'batches';
   switchView(initialHash);
 });
+
+window.Router = {
+  navigate(viewId) {
+    switchView(viewId);
+  }
+};
 
 // =====================================================================
 // THEME
@@ -97,6 +106,8 @@ function switchView(viewId) {
   if (viewId === 'my-study') BatchesView.renderMyBatchesGrid?.();
   else if (viewId === 'analytics') AnalyticsView.loadAnalytics?.();
   else if (viewId === 'tests') TestView.loadTests?.();
+  else if (viewId === 'careers') CareerView.init?.();
+  else if (viewId === 'parent') ParentView.init?.();
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (window.lucide) window.lucide.createIcons();

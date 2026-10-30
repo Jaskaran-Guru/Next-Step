@@ -36,10 +36,13 @@
         </a>
       </div>
 
-      <!-- Omnibox Search -->
-      <div class="header-search">
-        <i data-lucide="search" class="search-icon"></i>
-        <input type="text" id="global-search-input" placeholder="Search batches, lectures, topics, or your doubts...">
+      <!-- Universal AI Omnibox Search -->
+      <div class="header-search" style="position:relative;cursor:pointer;" onclick="window.UniversalSearch && window.UniversalSearch.openModal()">
+        <i data-lucide="sparkles" class="search-icon" style="color:var(--brand-primary);"></i>
+        <input type="text" id="global-search-input" placeholder="Ask anything in natural language... (e.g. 'What after 10th?', 'Playway for 3yo', 'SDE after BTech')">
+        <button id="header-ai-search-btn" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));color:#fff;border:none;border-radius:14px;padding:4px 10px;font-size:0.72rem;font-weight:700;display:flex;align-items:center;gap:4px;cursor:pointer;">
+          <span>✨</span> Ask AI
+        </button>
       </div>
 
       <!-- Header Right Actions -->
@@ -174,6 +177,34 @@
             <span class="hero-badge" id="hero-badge-text">🧠 AI LEARNING SPACE</span>
             <h1 class="hero-title" id="hero-title-text">Think. Learn. Build.</h1>
             <p class="hero-desc" id="hero-desc-text">One Search. Every Learning Need. Zero Fluff. Live interactive batches, Kota top faculty, NTA simulated test series, and 24x7 AI Saarthi doubt tutoring.</p>
+            <!-- Prominent Universal AI Search Bar on Homepage -->
+            <div style="margin: 20px 0 16px; background: rgba(21, 29, 50, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(104, 87, 245, 0.4); border-radius: var(--radius-lg); padding: 8px 12px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 20px rgba(104, 87, 245, 0.25); max-width: 680px;">
+              <span style="font-size: 1.2rem; color: var(--brand-secondary);">✨</span>
+              <input type="text" id="hero-ai-search-input" placeholder="Ask anything: 'What after 10th?', 'Playway for 3yo', 'SDE after BTech'..." style="flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 0.95rem; outline: none;" onkeydown="if(event.key === 'Enter'){ window.UniversalSearch.openModal(this.value); }">
+              <button class="btn btn-primary" onclick="const q = document.getElementById('hero-ai-search-input').value; window.UniversalSearch.openModal(q);" style="padding: 8px 18px; font-size: 0.85rem; border-radius: var(--radius-md);">
+                Ask AI →
+              </button>
+            </div>
+
+            <!-- Suggested Inquiry Chips on Homepage -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px;">
+              <button class="ai-search-suggestion-chip" data-query="What should I teach my three-year-old child?" style="font-size: 0.75rem; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-subtle); color: var(--text-secondary); padding: 4px 10px; border-radius: 20px; cursor: pointer;">
+                👶 3yo Playway
+              </button>
+              <button class="ai-search-suggestion-chip" data-query="Which subjects should my child study in Class 5?" style="font-size: 0.75rem; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-subtle); color: var(--text-secondary); padding: 4px 10px; border-radius: 20px; cursor: pointer;">
+                🎒 Class 5 Subjects
+              </button>
+              <button class="ai-search-suggestion-chip" data-query="PCM or Commerce: which pathway should I explore after 10th?" style="font-size: 0.75rem; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-subtle); color: var(--text-secondary); padding: 4px 10px; border-radius: 20px; cursor: pointer;">
+                ⚡ PCM vs Commerce
+              </button>
+              <button class="ai-search-suggestion-chip" data-query="Which degree is suitable for becoming a software engineer: B.Tech vs BCA?" style="font-size: 0.75rem; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-subtle); color: var(--text-secondary); padding: 4px 10px; border-radius: 20px; cursor: pointer;">
+                🎓 B.Tech vs BCA
+              </button>
+              <button class="ai-search-suggestion-chip" data-query="How can I become employable after college?" style="font-size: 0.75rem; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-subtle); color: var(--text-secondary); padding: 4px 10px; border-radius: 20px; cursor: pointer;">
+                💼 Zero-Unemployment Blueprint
+              </button>
+            </div>
+
             <div style="display: flex; gap: 14px; flex-wrap: wrap;">
               <button class="btn btn-violet" id="hero-cta-btn" onclick="window.switchView('doubts')">
                 <i data-lucide="sparkles"></i> Launch AI Tutor →
@@ -550,6 +581,198 @@
         </div>
       </section>
 
+      <!-- VIEW 9: CAREER & DEGREE EXPLORER + EMPLOYABILITY CENTRE -->
+      <section id="view-careers" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="briefcase" style="color: var(--brand-primary);"></i> Career, Degree & Employability Centre</h1>
+            <p class="section-subtitle">Discover high-ROI careers, compare degree pathways side-by-side, analyze your resume, and practice AI mock interviews</p>
+          </div>
+        </div>
+
+        <!-- Section 1: Career Catalog Filters -->
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:20px;">
+          <button class="career-cat-pill active" data-cat="All" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-primary);font-size:0.8rem;font-weight:700;cursor:pointer;">All Categories</button>
+          <button class="career-cat-pill" data-cat="Technology & AI" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">💻 Tech & AI</button>
+          <button class="career-cat-pill" data-cat="Medical & Healthcare" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">🩺 Medical</button>
+          <button class="career-cat-pill" data-cat="Commerce & Finance" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">📊 Finance & CA</button>
+          <button class="career-cat-pill" data-cat="Civil Services" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">🏛️ Civil Services</button>
+          <button class="career-cat-pill" data-cat="Design & Creative" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">🎨 UI/UX Design</button>
+        </div>
+
+        <!-- Career Cards Grid -->
+        <div id="career-cards-container" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:20px;margin-bottom:36px;">
+          <!-- Dynamically populated by CareerView -->
+        </div>
+
+        <!-- Section 2: Degree Comparison Tool -->
+        <div class="lecture-meta-card" style="margin-bottom:36px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px;">
+            <div>
+              <h3 style="font-size:1.2rem;font-weight:800;color:var(--text-primary);"><i data-lucide="scale" style="color:var(--brand-secondary);"></i> Interactive Degree Comparator</h3>
+              <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:2px;">Compare duration, eligibility, average fees, and career ceilings side-by-side</p>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <select id="degree-select-1" class="ctrl-select" style="padding:8px 12px;font-size:0.85rem;">
+                <option value="btech-cse">B.Tech Computer Science</option>
+                <option value="bca">BCA (Computer Applications)</option>
+                <option value="bcom-hons">B.Com (Honours)</option>
+                <option value="bba">BBA (Business Admin)</option>
+                <option value="mbbs">MBBS (Medicine)</option>
+              </select>
+              <span style="font-size:0.85rem;font-weight:700;color:var(--text-muted);">VS</span>
+              <select id="degree-select-2" class="ctrl-select" style="padding:8px 12px;font-size:0.85rem;">
+                <option value="bca" selected>BCA (Computer Applications)</option>
+                <option value="btech-cse">B.Tech Computer Science</option>
+                <option value="bcom-hons">B.Com (Honours)</option>
+                <option value="bba">BBA (Business Admin)</option>
+                <option value="mbbs">MBBS (Medicine)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+              <tbody id="degree-comparison-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section 3: Employability Development Centre (Resume & Mock Interviews) -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:36px;">
+          
+          <!-- Tool A: AI Mock Interview Simulator -->
+          <div class="lecture-meta-card" style="margin:0;">
+            <h3 style="font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:8px;">
+              <i data-lucide="mic" style="color:var(--brand-primary);"></i> AI Mock Interview Practice
+            </h3>
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:16px;">
+              Simulate technical and behavioral hiring questions customized to your target role.
+            </p>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+              <div>
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Target Role</label>
+                <select id="interview-role-select" class="ctrl-select" style="width:100%;padding:8px;">
+                  <option value="Software Engineer (SDE-1)">Software Engineer (SDE-1)</option>
+                  <option value="Full-Stack Web Developer">Full-Stack Web Developer</option>
+                  <option value="Data Analyst">Data Analyst</option>
+                  <option value="Product Designer">Product Designer</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Difficulty</label>
+                <select id="interview-difficulty-select" class="ctrl-select" style="width:100%;padding:8px;">
+                  <option value="Beginner / Intern">Beginner / Intern</option>
+                  <option value="Intermediate" selected>Intermediate (1-2 Yrs)</option>
+                  <option value="Advanced / FAANG">Advanced / Tier-1 Tech</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" id="btn-generate-interview" style="width:100%;font-size:0.85rem;padding:10px;">
+              ✨ Generate Mock Interview Questions
+            </button>
+
+            <div id="interview-questions-result" style="margin-top:16px;">
+              <!-- Generated Q&A rendered here -->
+            </div>
+          </div>
+
+          <!-- Tool B: ATS Resume Reviewer -->
+          <div class="lecture-meta-card" style="margin:0;">
+            <h3 style="font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:8px;">
+              <i data-lucide="file-check" style="color:var(--status-success);"></i> ATS Resume & Skill Gap Reviewer
+            </h3>
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:14px;">
+              Analyze your skill profile against ATS hiring algorithms to uncover missing competencies.
+            </p>
+
+            <div style="margin-bottom:12px;">
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Target Role</label>
+              <input type="text" id="resume-target-role" value="Full-Stack Software Engineer" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+            </div>
+
+            <div style="margin-bottom:12px;">
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Skills You Know (comma-separated)</label>
+              <input type="text" id="resume-skills-input" value="JavaScript, React, Node.js, Express, MongoDB, Git" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Project Summary / Experience</label>
+              <textarea id="resume-summary-input" rows="2" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;resize:vertical;">Built an edtech PW clone with MongoDB Atlas and Gemini AI doubt solving.</textarea>
+            </div>
+
+            <button class="btn btn-outline" id="btn-review-resume" style="width:100%;font-size:0.85rem;padding:10px;">
+              🔍 Run ATS Resume Assessment
+            </button>
+
+            <div id="resume-review-result" style="margin-top:16px;">
+              <!-- Review output rendered here -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VIEW 10: PARENT PORTAL & MULTI-CHILD MANAGEMENT -->
+      <section id="view-parent" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="users" style="color: var(--brand-secondary);"></i> Parent Portal & Child Milestones</h1>
+            <p class="section-subtitle">Manage developmental pathways for each child, track milestones, and consult the AI Parent Advisor</p>
+          </div>
+        </div>
+
+        <!-- Multi-Child Selector Tabs -->
+        <div id="parent-child-tabs-container" style="margin-bottom:24px;">
+          <!-- Dynamically populated with child pills -->
+        </div>
+
+        <!-- Active Child Overview Card -->
+        <div class="lecture-meta-card" id="parent-active-child-card" style="margin-bottom:24px;border:1px solid rgba(104,87,245,0.25);">
+          <!-- Populated by ParentView -->
+        </div>
+
+        <!-- Developmental Milestones Checklist -->
+        <div class="lecture-meta-card" style="margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <div>
+              <h3 style="font-size:1.15rem;font-weight:800;color:var(--text-primary);"><i data-lucide="check-circle" style="color:var(--status-success);"></i> Age-Appropriate Developmental Milestones</h3>
+              <p style="font-size:0.82rem;color:var(--text-secondary);margin-top:2px;">Check off completed milestones to track real-time cognitive, motor, and academic progress</p>
+            </div>
+          </div>
+          <div id="parent-milestones-list">
+            <!-- Checkbox checklist populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Weekly Activity Planner & Guidance -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div class="lecture-meta-card" style="margin:0;">
+            <h3 style="font-size:1.05rem;font-weight:800;color:var(--text-primary);margin-bottom:12px;">📅 Recommended Weekly Activity Planner</h3>
+            <div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6;">
+              <p><strong>• Mon / Wed:</strong> 25 mins sensory play (clay modeling, sensory water transfer, drawing).</p>
+              <p><strong>• Tue / Thu:</strong> 20 mins interactive aloud reading with open-ended comprehension prompts.</p>
+              <p><strong>• Friday:</strong> Outdoor obstacle course (balance beam, hopping, kickball).</p>
+              <p><strong>• Weekend:</strong> Family storytelling & emotional expression game.</p>
+            </div>
+          </div>
+
+          <div class="lecture-meta-card" style="margin:0;background:rgba(25,198,216,0.06);border:1px solid rgba(25,198,216,0.25);">
+            <h3 style="font-size:1.05rem;font-weight:800;color:var(--brand-secondary);margin-bottom:8px;">💡 AI Pediatric & Parenting Tip of the Day</h3>
+            <p style="font-size:0.88rem;color:var(--text-primary);line-height:1.5;">
+              "Praise effort and perseverance rather than innate talent. Children who hear <em>'You worked hard to figure out that puzzle'</em> develop significantly higher emotional resilience than those praised with <em>'You are so smart'</em>."
+            </p>
+            <button class="btn btn-primary" onclick="ParentView.askAdviceForChild()" style="margin-top:14px;font-size:0.8rem;padding:6px 14px;">
+              Ask AI Parent Advisor a Question →
+            </button>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -632,6 +855,104 @@
     </div>
   </div>
 
+  <!-- UNIVERSAL AI SEARCH MODAL -->
+  <div class="modal-overlay" id="universal-search-modal" style="z-index: 10002;">
+    <div class="modal-box" style="max-width: 760px; padding: 28px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;">
+            AI
+          </div>
+          <div>
+            <h3 style="font-size:1.25rem;font-weight:800;color:var(--text-primary);margin:0;">NextStep Universal AI Assistant</h3>
+            <p style="font-size:0.8rem;color:var(--text-secondary);margin:2px 0 0;">Ask any question about education, stages, degrees, careers, or child milestones</p>
+          </div>
+        </div>
+        <button id="universal-search-modal-close" style="background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer;">&times;</button>
+      </div>
+
+      <!-- Search Input Form -->
+      <form id="universal-search-form" style="display:flex;gap:10px;margin-bottom:20px;">
+        <div style="position:relative;flex:1;">
+          <i data-lucide="search" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--brand-primary);width:18px;height:18px;"></i>
+          <input type="text" id="universal-search-modal-input" placeholder="e.g. 'What to teach 3yo?', 'PCM vs Commerce', 'B.Tech vs BCA', 'How to be employable?'" style="width:100%;padding:14px 14px 14px 44px;background:var(--bg-surface-secondary);border:1px solid rgba(104,87,245,0.3);border-radius:var(--radius-md);color:var(--text-primary);font-size:0.95rem;outline:none;">
+        </div>
+        <button type="submit" class="btn btn-primary" style="padding:0 24px;font-size:0.9rem;font-weight:700;">
+          Ask AI
+        </button>
+      </form>
+
+      <!-- Suggested Example Queries -->
+      <div id="universal-search-suggestions" style="margin-bottom:20px;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;">Suggested Inquiries:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <button type="button" class="ai-search-suggestion-chip" data-query="What should I teach my three-year-old child?" style="background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary);padding:6px 12px;border-radius:20px;font-size:0.8rem;cursor:pointer;">
+            👶 What should I teach my 3-year-old?
+          </button>
+          <button type="button" class="ai-search-suggestion-chip" data-query="Which subjects should my child study in Class 5?" style="background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary);padding:6px 12px;border-radius:20px;font-size:0.8rem;cursor:pointer;">
+            🎒 Which subjects for Class 5?
+          </button>
+          <button type="button" class="ai-search-suggestion-chip" data-query="PCM or Commerce: which pathway should I explore after 10th?" style="background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary);padding:6px 12px;border-radius:20px;font-size:0.8rem;cursor:pointer;">
+            ⚡ PCM vs Commerce after 10th?
+          </button>
+          <button type="button" class="ai-search-suggestion-chip" data-query="Which degree is suitable for becoming a software engineer: B.Tech vs BCA?" style="background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary);padding:6px 12px;border-radius:20px;font-size:0.8rem;cursor:pointer;">
+            🎓 B.Tech CSE vs BCA for Software?
+          </button>
+          <button type="button" class="ai-search-suggestion-chip" data-query="How can I become employable after college?" style="background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary);padding:6px 12px;border-radius:20px;font-size:0.8rem;cursor:pointer;">
+            💼 How to become employable after college?
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="universal-search-loading" style="display:none;align-items:center;justify-content:center;padding:36px;gap:12px;color:var(--brand-primary);font-size:0.95rem;font-weight:600;">
+        <i data-lucide="loader-2" class="spin" style="width:24px;height:24px;"></i> NextStep AI is analyzing educational pathways...
+      </div>
+
+      <!-- Search Result Container -->
+      <div id="universal-search-result-container" style="max-height:55vh;overflow-y:auto;">
+        <!-- AI Response dynamically injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CAREER DETAILS MODAL -->
+  <div class="modal-overlay" id="career-details-modal" style="z-index: 10001;">
+    <div class="modal-box" style="max-width: 720px; padding: 28px;">
+      <div id="career-details-modal-content">
+        <!-- Injected by CareerView -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD CHILD MODAL (PARENT PORTAL) -->
+  <div class="modal-overlay" id="add-child-modal" style="z-index: 10001;">
+    <div class="modal-box" style="max-width: 520px; padding: 28px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <h3 style="font-size:1.2rem;font-weight:800;color:var(--text-primary);margin:0;">👶 Add Child Profile</h3>
+        <button onclick="document.getElementById('add-child-modal').classList.remove('active')" style="background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer;">&times;</button>
+      </div>
+      <form id="add-child-form">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:0.8rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Child's Name</label>
+          <input type="text" id="new-child-name" required placeholder="e.g. Ananya" style="width:100%;padding:10px 14px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);">
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:0.8rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Child's Age (Years)</label>
+          <input type="number" id="new-child-age" required min="1" max="22" value="3" style="width:100%;padding:10px 14px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label style="font-size:0.8rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Interests / Favorite Activities (comma-separated)</label>
+          <input type="text" id="new-child-interests" placeholder="e.g. Painting, Lego blocks, Storytelling" style="width:100%;padding:10px 14px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);">
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:10px;">
+          <button type="button" class="btn btn-outline" onclick="document.getElementById('add-child-modal').classList.remove('active')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Profile →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="toast-container"></div>
 
@@ -639,12 +960,15 @@
   <script src="js/api.js"></script>
   <script src="js/state.js"></script>
   <script src="js/stageConfig.js"></script>
+  <script src="js/universalSearch.js"></script>
   <script src="js/views/batchesView.js"></script>
   <script src="js/views/classroomView.js"></script>
   <script src="js/views/dppView.js"></script>
   <script src="js/views/testView.js"></script>
   <script src="js/views/doubtsView.js"></script>
   <script src="js/views/stagesView.js"></script>
+  <script src="js/views/careerView.js"></script>
+  <script src="js/views/parentView.js"></script>
   <script src="js/views/khazanaView.js"></script>
   <script src="js/views/analyticsView.js"></script>
   <script src="js/app.js"></script>

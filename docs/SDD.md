@@ -147,3 +147,4 @@ The system enforces four distinct roles with granular permission scopes:
 - **Child Privacy Shield**: Child records created under parents do not require independent email/phone numbers; their data is isolated and accessible only by the verified parent.
 - **Rate Limiting**: AI endpoints protected by leaky-bucket rate limiters to prevent API abuse.
 - **Input Sanitization**: All incoming query and doubt text sanitized against XSS and injection attacks.
+

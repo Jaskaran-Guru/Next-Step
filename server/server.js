@@ -15,6 +15,9 @@ const doubtsRoutes = require('./routes/doubts.routes');
 const materialsRoutes = require('./routes/materials.routes');
 const analyticsRoutes = require('./routes/analytics.routes');
 const stagesRoutes = require('./routes/stages.routes');
+const aiRoutes = require('./routes/ai.routes');
+const careersRoutes = require('./routes/careers.routes');
+const childrenRoutes = require('./routes/children.routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -38,6 +41,9 @@ app.use('/api/doubts', doubtsRoutes);
 app.use('/api/materials', materialsRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/stages', stagesRoutes);
+app.use('/api/ai', aiRoutes);
+app.use('/api/careers', careersRoutes);
+app.use('/api/children', childrenRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

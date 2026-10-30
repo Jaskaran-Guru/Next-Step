@@ -26,11 +26,12 @@ const APP_STAGE_CONFIGS = {
     saarthiSubjects: ['Child Development', 'Parenting Tips', 'Playway Activities', 'Nutrition'],
     navSections: [
       { title: 'PLAYWAY LEARNING', items: ['batches', 'khazana'] },
-      { title: 'PARENT AI SUPPORT', items: ['doubts', 'stages'] },
+      { title: 'PARENT AI & FAMILY', items: ['parent', 'doubts', 'stages'] },
       { title: 'INSIGHTS', items: ['analytics'] },
     ],
     navItems: [
       { view: 'batches',   label: 'Playway Activities',   icon: 'palette',     badge: null },
+      { view: 'parent',    label: 'Parent Portal & Kids', icon: 'users',       badge: 'PORTAL' },
       { view: 'khazana',   label: 'Parent Resources',     icon: 'archive',     badge: null },
       { view: 'doubts',    label: 'Parent AI Advisor',    icon: 'sparkles',    badge: 'AI' },
       { view: 'stages',    label: 'Growth Roadmap',       icon: 'compass',     badge: '1-4 Yrs' },
@@ -54,12 +55,13 @@ const APP_STAGE_CONFIGS = {
     saarthiSubjects: ['Mathematics', 'English', 'Science', 'Parenting Tips'],
     navSections: [
       { title: 'ACADEMICS', items: ['batches', 'my-study', 'khazana'] },
-      { title: 'AI SUPPORT', items: ['doubts', 'stages'] },
+      { title: 'FAMILY & AI', items: ['parent', 'doubts', 'stages'] },
       { title: 'INSIGHTS', items: ['analytics'] },
     ],
     navItems: [
       { view: 'batches',   label: 'Learning Courses',     icon: 'layers',      badge: null },
       { view: 'my-study',  label: 'My Study Room',        icon: 'book-open',   badge: null },
+      { view: 'parent',    label: 'Parent Portal & Kids', icon: 'users',       badge: 'PORTAL' },
       { view: 'khazana',   label: 'Study Materials',      icon: 'archive',     badge: null },
       { view: 'doubts',    label: 'AI Learning Buddy',    icon: 'sparkles',    badge: 'AI' },
       { view: 'stages',    label: 'Growth Roadmap',       icon: 'compass',     badge: '5-10' },
@@ -113,7 +115,7 @@ const APP_STAGE_CONFIGS = {
     saarthiSubjects: ['Mathematics', 'Science', 'Social Science', 'English'],
     navSections: [
       { title: 'BOARD PREP', items: ['batches', 'my-study', 'dpp', 'tests', 'khazana'] },
-      { title: 'AI & FUTURE', items: ['doubts', 'stages'] },
+      { title: 'AI & FUTURE', items: ['doubts', 'stages', 'careers'] },
       { title: 'INSIGHTS', items: ['analytics'] },
     ],
     navItems: [
@@ -124,6 +126,7 @@ const APP_STAGE_CONFIGS = {
       { view: 'khazana',   label: 'PYQs & Notes',         icon: 'archive',     badge: null },
       { view: 'doubts',    label: 'AI Saarthi Tutor',     icon: 'sparkles',    badge: 'AI' },
       { view: 'stages',    label: 'Stream Navigator',     icon: 'git-branch',  badge: 'KEY' },
+      { view: 'careers',   label: 'Careers & Degrees',    icon: 'compass',     badge: 'EXPLORE' },
       { view: 'analytics', label: 'Board Analytics',      icon: 'bar-chart-2', badge: null },
     ],
     profileFields: { showTargetExam: false, showCurrentClass: true, showChildAge: false, label: 'Class 9-10 Board Aspirant' }
@@ -145,7 +148,7 @@ const APP_STAGE_CONFIGS = {
     navSections: [
       { title: 'ACADEMICS', items: ['batches', 'my-study', 'classroom', 'dpp', 'tests'] },
       { title: 'AI & INTELLIGENCE', items: ['doubts', 'khazana'] },
-      { title: 'INSIGHTS & CAREER', items: ['analytics', 'stages'] },
+      { title: 'INSIGHTS & CAREER', items: ['analytics', 'stages', 'careers'] },
     ],
     navItems: [
       { view: 'batches',   label: 'Explore Batches',      icon: 'layers',      badge: null },
@@ -156,7 +159,8 @@ const APP_STAGE_CONFIGS = {
       { view: 'doubts',    label: 'AI Saarthi Tutor',     icon: 'sparkles',    badge: '24x7' },
       { view: 'khazana',   label: 'Khazana & Notes',      icon: 'archive',     badge: null },
       { view: 'analytics', label: 'Learning Analytics',   icon: 'bar-chart-2', badge: null },
-      { view: 'stages',    label: 'Career Navigator',     icon: 'compass',     badge: '0-25' },
+      { view: 'stages',    label: 'Lifecycle Navigator',  icon: 'map',         badge: '0-25' },
+      { view: 'careers',   label: 'Degree & Career Tree', icon: 'compass',     badge: 'COLLEGE' },
     ],
     profileFields: { showTargetExam: true, showCurrentClass: true, showChildAge: false, label: 'JEE / NEET / CUET Aspirant' }
   },
@@ -176,7 +180,8 @@ const APP_STAGE_CONFIGS = {
     saarthiSubjects: ['Full Stack Dev', 'Data Science', 'Finance', 'Aptitude'],
     navSections: [
       { title: 'SKILL BUILDING', items: ['batches', 'my-study', 'dpp', 'tests'] },
-      { title: 'AI & RESOURCES', items: ['doubts', 'khazana', 'stages'] },
+      { title: 'CAREER & EMPLOYABILITY', items: ['careers', 'stages'] },
+      { title: 'AI & RESOURCES', items: ['doubts', 'khazana'] },
       { title: 'INSIGHTS', items: ['analytics'] },
     ],
     navItems: [
@@ -184,9 +189,10 @@ const APP_STAGE_CONFIGS = {
       { view: 'my-study',  label: 'My Learning Room',     icon: 'book-open',   badge: null },
       { view: 'dpp',       label: 'Practice Problems',    icon: 'check-square', badge: null },
       { view: 'tests',     label: 'Placement Mocks',      icon: 'award',       badge: 'CBT' },
+      { view: 'careers',   label: 'Degree & Career Tree', icon: 'briefcase',   badge: 'PRO' },
+      { view: 'stages',    label: 'Career Roadmap',       icon: 'compass',     badge: '19-23' },
       { view: 'doubts',    label: 'Career AI Advisor',    icon: 'sparkles',    badge: 'AI' },
       { view: 'khazana',   label: 'Resources & Docs',     icon: 'archive',     badge: null },
-      { view: 'stages',    label: 'Career Roadmap',       icon: 'compass',     badge: '19-23' },
       { view: 'analytics', label: 'Skill Analytics',      icon: 'bar-chart-2', badge: null },
     ],
     profileFields: { showTargetExam: true, showCurrentClass: true, showChildAge: false, label: 'College / Undergrad Student' }
@@ -207,7 +213,8 @@ const APP_STAGE_CONFIGS = {
     saarthiSubjects: ['DSA & Algorithms', 'System Design', 'Aptitude', 'HR & Behavioral'],
     navSections: [
       { title: 'INTERVIEW PREP', items: ['batches', 'my-study', 'dpp', 'tests'] },
-      { title: 'AI COACH & RESOURCES', items: ['doubts', 'khazana', 'stages'] },
+      { title: 'CAREER & EMPLOYABILITY', items: ['careers', 'stages'] },
+      { title: 'AI COACH & RESOURCES', items: ['doubts', 'khazana'] },
       { title: 'INSIGHTS', items: ['analytics'] },
     ],
     navItems: [
@@ -215,6 +222,7 @@ const APP_STAGE_CONFIGS = {
       { view: 'my-study',  label: 'My Learning Room',     icon: 'book-open',   badge: null },
       { view: 'dpp',       label: 'DSA Practice',         icon: 'check-square', badge: null },
       { view: 'tests',     label: 'Mock Interviews',      icon: 'award',       badge: 'MOCK' },
+      { view: 'careers',   label: 'Career & Resume Suite', icon: 'briefcase',  badge: 'HIRE' },
       { view: 'doubts',    label: 'Career Coach AI',      icon: 'sparkles',    badge: 'AI' },
       { view: 'khazana',   label: 'Cheatsheets & Docs',   icon: 'archive',     badge: null },
       { view: 'stages',    label: 'Career Blueprint',     icon: 'compass',     badge: '21+' },

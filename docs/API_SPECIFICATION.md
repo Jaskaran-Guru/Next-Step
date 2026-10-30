@@ -91,3 +91,4 @@
 |---|---|---|---|
 | `GET` | `/api/analytics/dashboard` | Aggregated user metrics: study hours, quizzes solved, rank progress | Yes |
 | `POST` | `/api/analytics/heartbeat` | Record active learning time in video player or quiz | Yes |
+

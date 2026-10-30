@@ -173,6 +173,90 @@ const API = {
   async getSavedRoadmaps() {
     const res = await fetch(`${API_BASE}/stages/saved-roadmaps`);
     return res.json();
+  },
+
+  // Universal AI Assistant & Search
+  async universalSearch(query, activeStage) {
+    const res = await fetch(`${API_BASE}/ai/universal-search`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, activeStage })
+    });
+    return res.json();
+  },
+
+  async getMockInterview(role, domain, difficulty) {
+    const res = await fetch(`${API_BASE}/ai/interview-prep`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role, domain, difficulty })
+    });
+    return res.json();
+  },
+
+  async reviewResume(skills, experienceSummary, targetRole) {
+    const res = await fetch(`${API_BASE}/ai/resume-review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ skills, experienceSummary, targetRole })
+    });
+    return res.json();
+  },
+
+  // Career & Degree Explorer
+  async getCareers() {
+    const res = await fetch(`${API_BASE}/careers`);
+    return res.json();
+  },
+
+  async getCareerBySlug(slug) {
+    const res = await fetch(`${API_BASE}/careers/${slug}`);
+    return res.json();
+  },
+
+  async getDegrees() {
+    const res = await fetch(`${API_BASE}/careers/meta/degrees`);
+    return res.json();
+  },
+
+  async compareDegrees(codes) {
+    const res = await fetch(`${API_BASE}/careers/meta/compare-degrees`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ codes })
+    });
+    return res.json();
+  },
+
+  // Multi-Child Parent Portal
+  async getChildren() {
+    const res = await fetch(`${API_BASE}/children`);
+    return res.json();
+  },
+
+  async createChild(data) {
+    const res = await fetch(`${API_BASE}/children`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async updateChild(id, data) {
+    const res = await fetch(`${API_BASE}/children/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async deleteChild(id) {
+    const res = await fetch(`${API_BASE}/children/${id}`, {
+      method: 'DELETE'
+    });
+    return res.json();
   }
 };
 

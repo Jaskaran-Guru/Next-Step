@@ -146,3 +146,4 @@ erDiagram
   - `userId`: ObjectId (ref: `User`)
   - `persona`: Enum `['parent_advisor', 'socratic_tutor', 'career_coach', 'interview_mentor']`
   - `messages`: Array of `{ role: 'user' | 'model', content: String, timestamp: ISODate }`
+
