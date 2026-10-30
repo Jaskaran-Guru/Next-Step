@@ -1,0 +1,96 @@
+/* ==========================================================================
+   NEXTSTEP (PHYSICS WALLAH EDITION) - DESIGN SYSTEM VARIABLES
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Authentic PW Theme */
+  --bg-primary: #080c16;          /* Deepest Space Navy */
+  --bg-secondary: #0f172a;        /* Elevated Surface */
+  --bg-tertiary: #1e293b;         /* Card Surface */
+  --bg-card-hover: #26334d;       /* Hover state */
+  --bg-glass: rgba(15, 23, 42, 0.75);
+  --bg-glass-heavy: rgba(8, 12, 22, 0.88);
+
+  /* Signature Accents */
+  --primary-color: #2563eb;       /* PW Electric Cobalt */
+  --primary-hover: #1d4ed8;
+  --primary-glow: rgba(37, 99, 235, 0.35);
+  --primary-light: #3b82f6;
+
+  --accent-cyan: #06b6d4;        /* Cyan highlight */
+  --accent-cyan-glow: rgba(6, 182, 212, 0.3);
+
+  --accent-amber: #f59e0b;       /* PW Gold / Coins Accent */
+  --accent-amber-light: #fbbf24;
+  --accent-amber-glow: rgba(245, 158, 11, 0.35);
+
+  --accent-emerald: #10b981;     /* Success / Correct Answer */
+  --accent-rose: #f43f5e;        /* Error / Wrong Answer */
+  --accent-purple: #8b5cf6;      /* Marked for Review / Arjuna */
+
+  /* Text Colors */
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --border-glow: rgba(37, 99, 235, 0.5);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-neon: 0 0 25px rgba(37, 99, 235, 0.25);
+  --shadow-gold: 0 0 20px rgba(245, 158, 11, 0.25);
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #223049;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334466;
+}

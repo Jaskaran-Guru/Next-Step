@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextStep | Physics Wallah (PW) EdTech Platform</title>
+  <meta name="description" content="NextStep - India's most trusted learning platform. Live batches, video lectures, DPPs, All-India CBT Test Series, and 24x7 AI Saarthi doubt solver.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/player.css">
+  <link rel="stylesheet" href="css/test-engine.css">
+  <link rel="stylesheet" href="css/doubts.css">
+</head>
+<body>
+  <div id="app">
+    <!-- APP HEADER -->
+    <header class="app-header">
+      <div class="brand-section">
+        <a href="#batches" class="brand-logo" id="brand-logo-link">
+          <div class="logo-badge">PW</div>
+          <div>
+            <span class="brand-title">NextStep</span>
+            <span class="brand-subtitle">Physics Wallah OS</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Omnibox Search -->
+      <div class="header-search">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" id="global-search-input" placeholder="Search batches, lectures, physics formulas, tests, or topics...">
+      </div>
+
+      <!-- Header Right Actions -->
+      <div class="header-actions">
+        <!-- Target Exam Selector -->
+        <select id="header-exam-selector" class="ctrl-select" style="padding: 6px 12px; font-size: 0.82rem; background: rgba(30, 41, 59, 0.7); border: 1px solid var(--border-subtle);">
+          <option value="JEE Mains & Advanced">🎯 JEE Mains & Adv</option>
+          <option value="NEET UG">🩺 NEET UG</option>
+          <option value="Class 10 Foundation">📚 Class 10th</option>
+          <option value="GATE CS">💻 GATE CS</option>
+        </select>
+
+        <!-- Streak Pill -->
+        <div class="stat-pill streak" title="Continuous Learning Streak">
+          <span>🔥</span>
+          <span id="header-streak-count">21</span>
+          <span style="font-size: 0.72rem; color: var(--text-muted);">DAYS</span>
+        </div>
+
+        <!-- PW Coins -->
+        <div class="stat-pill coins" title="Earned PW Reward Coins">
+          <span>🪙</span>
+          <span id="header-coins-count">850</span>
+        </div>
+
+        <!-- User Profile Badge -->
+        <div class="user-profile-badge" id="profile-btn" title="Click to view/edit profile">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" alt="Avatar" class="user-avatar" id="header-user-avatar">
+          <span class="user-name-label" id="header-user-name">Jaskaran</span>
+          <i data-lucide="chevron-down" style="width: 14px; height: 14px; color: var(--text-muted);"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar">
+      <div class="nav-section-title">ACADEMICS</div>
+      
+      <a class="nav-item active" data-view="batches" id="nav-batches">
+        <i data-lucide="layers"></i>
+        <span>Explore Batches</span>
+      </a>
+
+      <a class="nav-item" data-view="my-study" id="nav-my-study">
+        <i data-lucide="book-open"></i>
+        <span>My Study Room</span>
+        <span class="nav-badge" id="sidebar-enrolled-count">1</span>
+      </a>
+
+      <a class="nav-item" data-view="classroom" id="nav-classroom">
+        <i data-lucide="video"></i>
+        <span>Live Classroom</span>
+        <span class="nav-badge live">LIVE</span>
+      </a>
+
+      <a class="nav-item" data-view="dpp" id="nav-dpp">
+        <i data-lucide="check-square"></i>
+        <span>Daily DPPs</span>
+      </a>
+
+      <a class="nav-item" data-view="tests" id="nav-tests">
+        <i data-lucide="award"></i>
+        <span>AITS Test Series</span>
+        <span class="nav-badge" style="background: var(--accent-amber);">CBT</span>
+      </a>
+
+      <div class="nav-section-title">AI & RESOURCES</div>
+
+      <a class="nav-item" data-view="doubts" id="nav-doubts">
+        <i data-lucide="sparkles"></i>
+        <span>PW Saarthi AI</span>
+        <span class="nav-badge" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-cyan));">24x7</span>
+      </a>
+
+      <a class="nav-item" data-view="khazana" id="nav-khazana">
+        <i data-lucide="archive"></i>
+        <span>Khazana & Notes</span>
+      </a>
+
+      <a class="nav-item" data-view="analytics" id="nav-analytics">
+        <i data-lucide="bar-chart-2"></i>
+        <span>My Analytics</span>
+      </a>
+    </aside>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="main-wrapper">
+      
+      <!-- VIEW 1: EXPLORE BATCHES -->
+      <section id="view-batches" class="page-view active">
+        <!-- Hero Banner -->
+        <div class="hero-banner">
+          <div class="hero-content">
+            <span class="hero-badge">⚡ NextStep PW Admissions 2026-27</span>
+            <h1 class="hero-title">Prepare With India's Top Educators at Most Affordable Fees</h1>
+            <p class="hero-desc">Live interactive classes, Daily Practice Problems (DPP) with video solutions, All-India CBT Test Series, and 24x7 Saarthi AI Doubt Engine.</p>
+            <div style="display: flex; gap: 14px;">
+              <button class="btn btn-primary" onclick="window.switchView('batches')">Explore All Batches</button>
+              <button class="btn btn-secondary" onclick="window.switchView('doubts')">Ask Doubt to AI Saarthi</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar" id="batch-filter-bar">
+          <button class="filter-pill active" data-category="All">All Streams</button>
+          <button class="filter-pill" data-category="JEE Mains & Advanced">IIT JEE</button>
+          <button class="filter-pill" data-category="NEET UG">NEET UG</button>
+          <button class="filter-pill" data-category="Class 10 Foundation">Class 9th & 10th</button>
+          <button class="filter-pill" data-category="GATE CS">GATE CS</button>
+        </div>
+
+        <!-- Batches Grid Container -->
+        <div class="section-header">
+          <div>
+            <h2 class="section-title"><i data-lucide="flame" style="color: var(--accent-amber);"></i> Flagship Batches</h2>
+            <p class="section-subtitle">Real-time synchronized with MongoDB Atlas</p>
+          </div>
+        </div>
+        <div class="batches-grid" id="batches-grid-container">
+          <!-- Batches rendered by batchesView.js -->
+        </div>
+      </section>
+
+      <!-- VIEW 2: MY STUDY ROOM -->
+      <section id="view-my-study" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="book-open" style="color: var(--primary-light);"></i> My Study Room</h1>
+            <p class="section-subtitle">Your actively enrolled batches and ongoing syllabus progression</p>
+          </div>
+        </div>
+        <div class="batches-grid" id="my-batches-grid-container">
+          <!-- Enrolled batches rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- VIEW 3: CLASSROOM & VIDEO PLAYER -->
+      <section id="view-classroom" class="page-view">
+        <div class="classroom-layout">
+          <!-- Left: Player & Meta -->
+          <div>
+            <div class="player-container">
+              <div class="video-wrapper">
+                <video id="main-video-element" preload="metadata" playsinline src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
+                
+                <!-- Custom Player Controls Bar -->
+                <div class="player-controls" id="custom-player-controls">
+                  <div class="timeline-bar-wrapper" id="video-timeline-bar">
+                    <div class="timeline-progress" id="video-timeline-progress">
+                      <div class="timeline-thumb"></div>
+                    </div>
+                  </div>
+                  <div class="controls-row">
+                    <div class="controls-left">
+                      <button class="ctrl-btn" id="ctrl-play-btn" title="Play/Pause">
+                        <i data-lucide="play" id="play-icon"></i>
+                      </button>
+                      <button class="ctrl-btn" id="ctrl-rewind-btn" title="Rewind 10s">
+                        <i data-lucide="rotate-ccw"></i>
+                      </button>
+                      <button class="ctrl-btn" id="ctrl-forward-btn" title="Forward 10s">
+                        <i data-lucide="rotate-cw"></i>
+                      </button>
+                      <div class="time-display">
+                        <span id="current-time-text">00:00</span> / <span id="duration-time-text">00:00</span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <!-- Speed Selector -->
+                      <select id="video-speed-select" class="ctrl-select" title="Playback Speed">
+                        <option value="0.75">0.75x</option>
+                        <option value="1" selected>1.0x (Normal)</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2.0x</option>
+                      </select>
+
+                      <!-- Resolution Selector -->
+                      <select id="video-quality-select" class="ctrl-select" title="Streaming Quality">
+                        <option value="1080">1080p Full HD</option>
+                        <option value="720" selected>720p HD</option>
+                        <option value="480">480p</option>
+                        <option value="360">360p Data Saver</option>
+                      </select>
+
+                      <button class="ctrl-btn" id="ctrl-fullscreen-btn" title="Fullscreen">
+                        <i data-lucide="maximize"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lecture Info Card -->
+            <div class="lecture-meta-card">
+              <div class="lecture-header-row">
+                <div>
+                  <span class="batch-badge" id="current-lecture-badge" style="position: static; margin-bottom: 8px; display: inline-block;">PHYSICS CHAPTER 01</span>
+                  <h2 class="lecture-main-title" id="current-lecture-title">Lecture 01 : Coulomb's Law & Principle of Superposition</h2>
+                </div>
+                <button class="btn btn-primary" onclick="window.switchView('dpp')" style="padding: 8px 14px; font-size: 0.82rem;">
+                  <i data-lucide="check-square"></i> Practice DPP
+                </button>
+              </div>
+              <div class="faculty-badge-row">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="faculty-avatar-circle" id="current-lecture-faculty-img" alt="Faculty">
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem;" id="current-lecture-faculty-name">Alakh Pandey Sir</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">Recorded Live Session • Full HD</div>
+                </div>
+              </div>
+              <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.5;" id="current-lecture-description">
+                Fundamental electrostatics, quantization of charge, vector form of Coulomb's law and symmetrical charge equilibrium problems.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: Classroom Drawer -->
+          <div class="classroom-drawer">
+            <div class="drawer-tabs">
+              <button class="drawer-tab active" data-drawer="lectures" id="tab-drawer-lectures">
+                <i data-lucide="list-video"></i> Lectures
+              </button>
+              <button class="drawer-tab" data-drawer="notes" id="tab-drawer-notes">
+                <i data-lucide="file-text"></i> My Notes
+              </button>
+            </div>
+
+            <div class="drawer-content">
+              <!-- Tab 1: Lecture List Accordion -->
+              <div id="drawer-view-lectures">
+                <div id="classroom-lectures-container">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Tab 2: Timestamped Notes -->
+              <div id="drawer-view-notes" style="display: none;">
+                <div class="notes-input-box">
+                  <div class="notes-input-header">
+                    <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-secondary);">Add Timestamp Note</span>
+                    <span class="current-time-tag" id="note-active-timestamp">00:00</span>
+                  </div>
+                  <textarea class="notes-textarea" id="new-note-textarea" placeholder="Type key concept, formula or reminder at this video second..."></textarea>
+                  <div style="text-align: right; margin-top: 8px;">
+                    <button class="btn btn-primary" id="save-note-btn" style="padding: 6px 14px; font-size: 0.78rem;">
+                      <i data-lucide="save"></i> Save to DB
+                    </button>
+                  </div>
+                </div>
+
+                <div id="saved-notes-list">
+                  <!-- User saved notes rendered from MongoDB -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: DAILY PRACTICE PROBLEMS (DPP) -->
+      <section id="view-dpp" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="check-square" style="color: var(--accent-emerald);"></i> Daily Practice Problems (DPP)</h1>
+            <p class="section-subtitle">Test concept clarity immediately after watching the lecture</p>
+          </div>
+          <div id="dpp-active-stats" class="stat-pill" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: var(--accent-emerald);">
+            <span>+4 Marks / -1 Negative</span>
+          </div>
+        </div>
+
+        <div id="dpp-container" style="max-width: 860px; margin: 0 auto;">
+          <!-- DPP Questions and Submit Button rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- VIEW 5: ALL-INDIA TEST SERIES (CBT EXAM ENGINE) -->
+      <section id="view-tests" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="award" style="color: var(--accent-amber);"></i> All-India CBT Test Series (AITS)</h1>
+            <p class="section-subtitle">Real NTA exam environment with timer, question palette, and percentile analysis</p>
+          </div>
+        </div>
+
+        <!-- Available Tests List (When not inside exam) -->
+        <div id="tests-list-view">
+          <div class="batches-grid" id="available-tests-grid">
+            <!-- Tests rendered from MongoDB -->
+          </div>
+        </div>
+
+        <!-- Active Exam Simulator (Shown when taking test) -->
+        <div id="cbt-exam-simulator" style="display: none;">
+          <div class="cbt-exam-wrapper">
+            <!-- Topbar -->
+            <div class="cbt-header">
+              <div class="cbt-test-info">
+                <h2 id="cbt-title-display">PW All-India Open Mock Test 01</h2>
+                <p>NTA Computer Based Test Mode • Positive: +4 | Negative: -1</p>
+              </div>
+              <div class="cbt-timer-box">
+                <i data-lucide="clock"></i>
+                <span id="cbt-countdown-clock">180:00</span>
+              </div>
+            </div>
+
+            <!-- Sections Bar -->
+            <div class="cbt-sections-bar" id="cbt-sections-container">
+              <button class="cbt-section-tab active" data-subject="Physics">Physics</button>
+              <button class="cbt-section-tab" data-subject="Chemistry">Chemistry</button>
+              <button class="cbt-section-tab" data-subject="Mathematics">Mathematics</button>
+            </div>
+
+            <!-- Main Question & Palette Grid -->
+            <div class="cbt-main-grid">
+              <!-- Left Question Pane -->
+              <div class="cbt-question-pane">
+                <div class="question-meta-row">
+                  <div class="question-number-badge" id="cbt-q-number">Question 1</div>
+                  <div class="question-marks-badge">+4 Marks / -1 Mark</div>
+                </div>
+                <div class="question-text-box" id="cbt-q-text">
+                  Loading question text...
+                </div>
+                <div class="options-list" id="cbt-options-container">
+                  <!-- Options rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Right Question Palette Pane -->
+              <div class="cbt-palette-pane">
+                <div class="palette-legend">
+                  <div class="legend-item"><span class="palette-dot dot-answered"></span> Answered</div>
+                  <div class="legend-item"><span class="palette-dot dot-not-answered"></span> Not Answered</div>
+                  <div class="legend-item"><span class="palette-dot dot-review"></span> Review Tagged</div>
+                  <div class="legend-item"><span class="palette-dot dot-not-visited"></span> Not Visited</div>
+                </div>
+                <div class="palette-grid-title">Question Palette</div>
+                <div class="palette-grid" id="cbt-palette-buttons-grid">
+                  <!-- Question numbers 1..N rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Action Controls -->
+            <div class="cbt-footer">
+              <div class="cbt-footer-left">
+                <button class="btn btn-secondary" id="cbt-btn-review">
+                  <i data-lucide="bookmark"></i> Mark for Review & Next
+                </button>
+                <button class="btn btn-secondary" id="cbt-btn-clear">
+                  <i data-lucide="x"></i> Clear Response
+                </button>
+              </div>
+              <div class="cbt-footer-right">
+                <button class="btn btn-primary" id="cbt-btn-save-next">
+                  Save & Next <i data-lucide="arrow-right"></i>
+                </button>
+                <button class="btn btn-amber" id="cbt-btn-submit-exam">
+                  <i data-lucide="check-circle"></i> Submit Test
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: PW SAARTHI AI DOUBT SOLVER -->
+      <section id="view-doubts" class="page-view">
+        <div class="saarthi-layout">
+          <!-- Main Query and Solution Area -->
+          <div class="saarthi-main">
+            <div class="saarthi-hero">
+              <div class="saarthi-bot-avatar">
+                <i data-lucide="bot"></i>
+              </div>
+              <div class="saarthi-hero-info">
+                <h3>PW Saarthi AI Doubt Assistant</h3>
+                <p>24x7 Instant Step-by-Step Science & Math Resolutions with Kota Formula Shortcuts</p>
+              </div>
+            </div>
+
+            <!-- Subject Chips -->
+            <div class="doubt-subject-bar" id="doubt-subject-chips">
+              <span class="subject-chip active" data-subject="Physics">⚡ Physics</span>
+              <span class="subject-chip" data-subject="Chemistry">🧪 Chemistry</span>
+              <span class="subject-chip" data-subject="Mathematics">📐 Mathematics</span>
+              <span class="subject-chip" data-subject="Biology">🧬 Biology</span>
+            </div>
+
+            <!-- Query Input -->
+            <div class="doubt-input-card">
+              <textarea class="doubt-textarea" id="doubt-question-input" placeholder="Type your doubt or question here (e.g., 'How to find neutral point in Coulomb law between +4q and +q separated by d?')..."></textarea>
+              <div class="doubt-input-footer">
+                <span class="input-hint">💡 All doubts are stored in your MongoDB account</span>
+                <button class="btn btn-primary" id="ask-doubt-btn" style="padding: 8px 18px;">
+                  <i data-lucide="sparkles"></i> Ask Saarthi
+                </button>
+              </div>
+            </div>
+
+            <!-- Current AI Solution Box -->
+            <div id="saarthi-solution-container">
+              <!-- Rendered after query submission -->
+            </div>
+          </div>
+
+          <!-- History Sidebar -->
+          <div class="doubt-history-pane">
+            <div class="history-title">
+              <i data-lucide="history"></i> My Solved Doubts
+            </div>
+            <div id="doubt-history-container">
+              <!-- Loaded from MongoDB -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 7: KHAZANA & STUDY MATERIALS -->
+      <section id="view-khazana" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="archive" style="color: var(--accent-amber);"></i> PW Khazana & Notes Library</h1>
+            <p class="section-subtitle">Download master formula sheets, handwritten lecture PDFs, and chapter mind maps</p>
+          </div>
+        </div>
+
+        <div class="filter-bar" id="khazana-filter-bar">
+          <button class="filter-pill active" data-cat="All">All Categories</button>
+          <button class="filter-pill" data-cat="Formula Sheet">Formula Sheets</button>
+          <button class="filter-pill" data-cat="Class Notes PDF">Class Notes</button>
+          <button class="filter-pill" data-cat="Mind Map">Mind Maps</button>
+          <button class="filter-pill" data-cat="PYQ Booklet">PYQ Booklets</button>
+        </div>
+
+        <div class="batches-grid" id="khazana-materials-grid">
+          <!-- Study materials rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- VIEW 8: PERFORMANCE & ANALYTICS -->
+      <section id="view-analytics" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="bar-chart-2" style="color: var(--accent-cyan);"></i> Student Performance Dashboard</h1>
+            <p class="section-subtitle">Real-time statistics computed across your lecture watch time, DPP accuracy, and mock tests</p>
+          </div>
+        </div>
+
+        <!-- Stat Cards Grid -->
+        <div class="scorecard-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 32px;" id="analytics-stats-grid">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Recent Mock Tests Performance Table -->
+        <div class="lecture-meta-card" style="margin-top: 0;">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 16px;">🏆 Recent Test Attempts & All-India Rank</h3>
+          <div id="analytics-recent-tests-table">
+            <!-- Table dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- SCORECARD MODAL -->
+  <div class="modal-overlay" id="scorecard-modal">
+    <div class="modal-box" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🏆 All-India Test Scorecard</h3>
+        <button class="modal-close" onclick="window.closeScorecardModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="scorecard-modal-body">
+        <!-- Rendered after exam submission -->
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE MODAL -->
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal-box" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">👤 Student Profile</h3>
+        <button class="modal-close" onclick="window.closeProfileModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" class="faculty-avatar-circle" style="width: 72px; height: 72px; border: 3px solid var(--primary-color);" id="profile-modal-avatar" alt="Avatar">
+          <h3 style="font-size: 1.2rem; font-weight: 800; margin-top: 10px;" id="profile-modal-name">Jaskaran Singh</h3>
+          <p style="font-size: 0.82rem; color: var(--text-muted);" id="profile-modal-email">jaskaran@pw.in</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Target Examination</label>
+            <select id="profile-exam-select" class="ctrl-select" style="width: 100%; padding: 10px; font-size: 0.9rem;">
+              <option value="JEE Mains & Advanced">JEE Mains & Advanced</option>
+              <option value="NEET UG">NEET UG</option>
+              <option value="Class 10 Foundation">Class 10th Foundation</option>
+              <option value="GATE CS">GATE CS</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Current Academic Class</label>
+            <input type="text" id="profile-class-input" value="Class 12th" style="width: 100%; padding: 10px 14px; background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: #fff; outline: none;">
+          </div>
+          <button class="btn btn-primary" id="save-profile-btn" style="margin-top: 10px;">Save Profile Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- Client JavaScript Modules -->
+  <script src="js/api.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/views/batchesView.js"></script>
+  <script src="js/views/classroomView.js"></script>
+  <script src="js/views/dppView.js"></script>
+  <script src="js/views/testView.js"></script>
+  <script src="js/views/doubtsView.js"></script>
+  <script src="js/views/khazanaView.js"></script>
+  <script src="js/views/analyticsView.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
