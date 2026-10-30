@@ -39,18 +39,15 @@
       <!-- Omnibox Search -->
       <div class="header-search">
         <i data-lucide="search" class="search-icon"></i>
-        <input type="text" id="global-search-input" placeholder="Search batches, lectures, physics formulas, tests, or topics...">
+        <input type="text" id="global-search-input" placeholder="Search batches, lectures, topics, or your doubts...">
       </div>
 
       <!-- Header Right Actions -->
       <div class="header-actions">
-        <!-- Target Exam Selector -->
-        <select id="header-exam-selector" class="ctrl-select" style="padding: 6px 12px; font-size: 0.82rem; background: rgba(30, 41, 59, 0.7); border: 1px solid var(--border-subtle);">
-          <option value="JEE Mains & Advanced">🎯 JEE Mains & Adv</option>
-          <option value="NEET UG">🩺 NEET UG</option>
-          <option value="Class 10 Foundation">📚 Class 10th</option>
-          <option value="GATE CS">💻 GATE CS</option>
-        </select>
+        <!-- Active Stage Pill -->
+        <div id="header-stage-pill" style="background:rgba(37,99,235,0.12);color:#2563EB;border:1px solid rgba(37,99,235,0.3);padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;cursor:pointer;white-space:nowrap;" onclick="window.openStagePickerModal()" title="Click to change your learning stage">
+          🎯 Class 11-12 — JEE / NEET
+        </div>
 
         <!-- Streak Pill -->
         <div class="stat-pill streak" title="Continuous Learning Streak">
@@ -80,63 +77,18 @@
       </div>
     </header>
 
-    <!-- SIDEBAR NAVIGATION -->
-    <aside class="app-sidebar">
-      <div class="nav-section-title">ACADEMICS</div>
-      
-      <a class="nav-item active" data-view="batches" id="nav-batches">
-        <i data-lucide="layers"></i>
-        <span>Explore Batches</span>
-      </a>
+    <aside class="app-sidebar" id="app-sidebar">
+      <!-- Stage indicator at top of sidebar -->
+      <div id="active-stage-sidebar-chip" style="margin:0 0 12px 0;padding:8px 12px;border-radius:var(--radius-sm);background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);cursor:pointer;" onclick="window.openStagePickerModal()">
+        <div style="font-size:0.65rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">YOUR LEARNING STAGE</div>
+        <div id="sidebar-stage-label" style="font-size:0.82rem;font-weight:700;color:#2563EB;">🎯 Class 11-12 — JEE/NEET/CUET</div>
+        <div style="font-size:0.7rem;color:var(--text-muted);margin-top:2px;">Tap to change stage →</div>
+      </div>
 
-      <a class="nav-item" data-view="my-study" id="nav-my-study">
-        <i data-lucide="book-open"></i>
-        <span>My Study Room</span>
-        <span class="nav-badge" id="sidebar-enrolled-count">1</span>
-      </a>
-
-      <a class="nav-item" data-view="classroom" id="nav-classroom">
-        <i data-lucide="video"></i>
-        <span>Live Classroom</span>
-        <span class="nav-badge live">LIVE</span>
-      </a>
-
-      <a class="nav-item" data-view="dpp" id="nav-dpp">
-        <i data-lucide="check-square"></i>
-        <span>Daily DPPs</span>
-      </a>
-
-      <a class="nav-item" data-view="tests" id="nav-tests">
-        <i data-lucide="award"></i>
-        <span>AITS Test Series</span>
-        <span class="nav-badge" style="background: var(--brand-accent); color: #0f172a;">CBT</span>
-      </a>
-
-      <div class="nav-section-title">AI & INTELLIGENCE</div>
-
-      <a class="nav-item" data-view="doubts" id="nav-doubts">
-        <i data-lucide="sparkles"></i>
-        <span>AI Saarthi Tutor</span>
-        <span class="nav-badge ai">24x7</span>
-      </a>
-
-      <a class="nav-item" data-view="khazana" id="nav-khazana">
-        <i data-lucide="archive"></i>
-        <span>Khazana & Notes</span>
-      </a>
-
-      <a class="nav-item" data-view="analytics" id="nav-analytics">
-        <i data-lucide="bar-chart-2"></i>
-        <span>Learning Analytics</span>
-      </a>
-
-      <div class="nav-section-title">LIFECYCLE & CAREER</div>
-
-      <a class="nav-item" data-view="stages" id="nav-stages">
-        <i data-lucide="compass"></i>
-        <span>Child & Career Navigator</span>
-        <span class="nav-badge" style="background: var(--brand-secondary); color: #fff;">0-25 Yrs</span>
-      </a>
+      <!-- Dynamic Nav Area — rewritten by StageEngine on stage change -->
+      <div id="dynamic-nav-area">
+        <!-- Populated by StageEngine.applyStage() -->
+      </div>
     </aside>
 
     <!-- MAIN APP WRAPPER -->
@@ -216,17 +168,17 @@
 
       <!-- VIEW 1: EXPLORE BATCHES -->
       <section id="view-batches" class="page-view active">
-        <!-- Hero Banner: NextStep OS Saarthi Hybrid -->
+        <!-- Hero Banner with dynamic IDs -->
         <div class="hero-banner">
           <div class="hero-content">
-            <span class="hero-badge">🧠 AI LEARNING SPACE</span>
-            <h1 class="hero-title">Think. Learn. Build.</h1>
-            <p class="hero-desc">One Search. Every Learning Need. Zero Fluff. Live interactive batches, Kota top faculty, NTA simulated test series, and 24x7 AI Saarthi doubt tutoring.</p>
+            <span class="hero-badge" id="hero-badge-text">🧠 AI LEARNING SPACE</span>
+            <h1 class="hero-title" id="hero-title-text">Think. Learn. Build.</h1>
+            <p class="hero-desc" id="hero-desc-text">One Search. Every Learning Need. Zero Fluff. Live interactive batches, Kota top faculty, NTA simulated test series, and 24x7 AI Saarthi doubt tutoring.</p>
             <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-              <button class="btn btn-violet" onclick="window.switchView('doubts')">
+              <button class="btn btn-violet" id="hero-cta-btn" onclick="window.switchView('doubts')">
                 <i data-lucide="sparkles"></i> Launch AI Tutor →
               </button>
-              <button class="btn btn-primary" onclick="window.switchView('batches')">
+              <button class="btn btn-primary" id="hero-secondary-btn" onclick="window.switchView('batches')">
                 Explore Learning →
               </button>
             </div>
@@ -511,8 +463,8 @@
                 <i data-lucide="bot"></i>
               </div>
               <div class="saarthi-hero-info">
-                <h3>PW Saarthi AI Doubt Assistant</h3>
-                <p>24x7 Instant Step-by-Step Science & Math Resolutions with Kota Formula Shortcuts</p>
+                <h3 id="saarthi-persona-name">PW Saarthi AI Tutor</h3>
+                <p id="saarthi-persona-desc">24x7 Instant Step-by-Step Science & Math Resolutions with Kota Formula Shortcuts</p>
               </div>
             </div>
 
@@ -616,19 +568,38 @@
 
   <!-- PROFILE MODAL -->
   <div class="modal-overlay" id="profile-modal">
-    <div class="modal-box" style="max-width: 480px;">
+    <div class="modal-box" style="max-width: 520px;">
       <div class="modal-header">
         <h3 class="modal-title">👤 Student Profile</h3>
         <button class="modal-close" onclick="window.closeProfileModal()">&times;</button>
       </div>
       <div class="modal-body">
         <div style="text-align: center; margin-bottom: 20px;">
-          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" class="faculty-avatar-circle" style="width: 72px; height: 72px; border: 3px solid var(--primary-color);" id="profile-modal-avatar" alt="Avatar">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" class="faculty-avatar-circle" style="width: 72px; height: 72px; border: 3px solid var(--brand-primary);" id="profile-modal-avatar" alt="Avatar">
           <h3 style="font-size: 1.2rem; font-weight: 800; margin-top: 10px;" id="profile-modal-name">Jaskaran Singh</h3>
           <p style="font-size: 0.82rem; color: var(--text-muted);" id="profile-modal-email">jaskaran@pw.in</p>
         </div>
+
+        <!-- LIFE STAGE CHANGER — the core setting -->
+        <div style="margin-bottom: 18px; padding: 16px; border-radius: var(--radius-sm); border: 2px solid var(--brand-primary); background: rgba(37,99,235,0.06);">
+          <label style="font-size: 0.8rem; font-weight: 700; color: var(--brand-primary); display: block; margin-bottom: 10px;">
+            🎯 Your Learning Stage <span style="font-weight:400;color:var(--text-muted);">(controls entire app experience)</span>
+          </label>
+          <div id="profile-stage-grid" style="display: flex; flex-direction: column; gap: 6px;">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </div>
+
         <div style="display: flex; flex-direction: column; gap: 14px;">
-          <div>
+          <div id="profile-current-class-row">
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Current Academic Class</label>
+            <input type="text" id="profile-class-input" value="Class 12th" style="width: 100%; padding: 10px 14px; background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: #fff; outline: none;">
+          </div>
+          <div id="profile-child-age-row" style="display:none;">
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Child's Age / Grade</label>
+            <input type="text" id="profile-child-age-input" placeholder="e.g. 3.5 years, Nursery, UKG" style="width: 100%; padding: 10px 14px; background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: #fff; outline: none;">
+          </div>
+          <div id="profile-target-exam-row">
             <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Target Examination</label>
             <select id="profile-exam-select" class="ctrl-select" style="width: 100%; padding: 10px; font-size: 0.9rem;">
               <option value="JEE Mains & Advanced">JEE Mains & Advanced</option>
@@ -637,12 +608,26 @@
               <option value="GATE CS">GATE CS</option>
             </select>
           </div>
-          <div>
-            <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 6px;">Current Academic Class</label>
-            <input type="text" id="profile-class-input" value="Class 12th" style="width: 100%; padding: 10px 14px; background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: #fff; outline: none;">
-          </div>
           <button class="btn btn-primary" id="save-profile-btn" style="margin-top: 10px;">Save Profile Changes</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIRST-VISIT STAGE PICKER MODAL -->
+  <div class="modal-overlay" id="stage-picker-modal" style="z-index: 10000;">
+    <div class="modal-box" style="max-width: 680px; padding: 0; overflow: hidden;">
+      <div style="padding: 28px 32px 24px; background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)); border-bottom: 1px solid var(--border-color);">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:10px;">
+          <div class="logo-badge" style="width:44px;height:44px;background:linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));">NS</div>
+          <div>
+            <h2 style="font-size:1.4rem;font-weight:900;color:var(--text-primary);margin:0;">Who are you learning for?</h2>
+            <p style="font-size:0.85rem;color:var(--text-secondary);margin:4px 0 0;">The entire app — content, AI, navigation — adapts to your stage.</p>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 24px 32px 32px; max-height: 60vh; overflow-y: auto;" id="stage-picker-grid">
+        <!-- Populated by JS -->
       </div>
     </div>
   </div>
@@ -653,6 +638,7 @@
   <!-- Client JavaScript Modules -->
   <script src="js/api.js"></script>
   <script src="js/state.js"></script>
+  <script src="js/stageConfig.js"></script>
   <script src="js/views/batchesView.js"></script>
   <script src="js/views/classroomView.js"></script>
   <script src="js/views/dppView.js"></script>
