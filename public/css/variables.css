@@ -1,50 +1,51 @@
 /* ==========================================================================
-   NEXTSTEP OS (SAARTHI) - DESIGN SYSTEM VARIABLES & HYBRID TOKENS
-   Midnight Navy + Electric Blue + AI Violet + Neon Cyan
+   NEXTSTEP OS - COMPLETE EXTENDED COLOR SYSTEM (COMBINATION 1)
+   Electric Violet + Cyan + Lavender + Midnight Navy + Deep Navy
    ========================================================================== */
 
 :root {
   /* Core Brand Colors */
-  --brand-primary: #2563EB;       /* Electric Blue */
-  --brand-primary-dark: #101C3A;  /* Midnight Navy */
-  --brand-secondary: #8B5CF6;     /* AI Violet */
-  --brand-accent: #06B6D4;        /* Neon Cyan */
-  --brand-accent-soft: #67E8F9;   /* Light Cyan */
+  --brand-primary: #6857F5;       /* Electric Violet */
+  --brand-secondary: #19C6D8;     /* Cyan */
+  --brand-accent: #A78BFA;        /* Lavender */
+  --brand-primary-rgb: 104, 87, 245;
+  --brand-secondary-rgb: 25, 198, 216;
+  --brand-accent-rgb: 167, 139, 250;
 
-  /* Default to Dark Theme */
-  --bg-primary: #0B1120;
-  --bg-surface: #111827;
-  --bg-surface-secondary: #1E293B;
-  --bg-surface-tertiary: #172236;
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  --border-color: #334155;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(37, 99, 235, 0.45);
-  --primary-hover: #3B82F6;
+  /* Default Dark Theme Tokens */
+  --bg-primary: #0B1020;          /* Main Background: Midnight Navy */
+  --bg-surface: #151D32;          /* Card Background: Deep Navy */
+  --bg-surface-secondary: #1D2942;/* Elevated Surface: Slate Navy */
+  --bg-surface-tertiary: #24324f;
+  --text-primary: #F5F7FF;        /* Main Text: Cloud White */
+  --text-secondary: #A5B0C5;      /* Secondary Text: Silver Blue */
+  --text-muted: #7E8DA6;          /* Muted Support */
+  --border-color: rgba(255, 255, 255, 0.09);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-glow: rgba(104, 87, 245, 0.45);
+  --primary-hover: #5746E6;
 
-  /* Functional Colors (Dark) */
-  --status-success: #4ADE80;
-  --status-warning: #FBBF24;
-  --status-error: #F87171;
-  --status-info: #60A5FA;
+  /* Functional Status Colors */
+  --status-success: #22C58B;      /* Emerald */
+  --status-warning: #F5B942;      /* Amber */
+  --status-error: #F06474;        /* Coral Red */
+  --status-info: #19C6D8;         /* Cyan */
 
   /* Accent Glows & Gradients */
-  --glow-blue: rgba(37, 99, 235, 0.35);
-  --glow-violet: rgba(139, 92, 246, 0.35);
-  --glow-cyan: rgba(6, 182, 212, 0.3);
+  --glow-violet: rgba(104, 87, 245, 0.35);
+  --glow-cyan: rgba(25, 198, 216, 0.3);
+  --glow-lavender: rgba(167, 139, 250, 0.25);
 
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 25px rgba(37, 99, 235, 0.25);
-  --shadow-ai: 0 0 25px rgba(139, 92, 246, 0.25);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 25px rgba(104, 87, 245, 0.3);
+  --shadow-ai: 0 0 25px rgba(25, 198, 216, 0.25);
 
   /* Glassmorphism */
-  --bg-glass: rgba(17, 24, 39, 0.85);
-  --bg-glass-card: rgba(30, 41, 59, 0.7);
+  --bg-glass: rgba(21, 29, 50, 0.85);
+  --bg-glass-card: rgba(29, 41, 66, 0.7);
 
   /* Typography */
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -64,32 +65,32 @@
 
 /* LIGHT THEME TOKENS */
 [data-theme="light"] {
-  --bg-primary: #F8FAFC;          /* Main Page */
-  --bg-surface: #FFFFFF;          /* Cards & Panels */
-  --bg-surface-secondary: #F1F5F9;/* Inputs & Secondary */
+  --bg-primary: #F6F8FC;          /* Main Background */
+  --bg-surface: #FFFFFF;          /* Surface / Cards */
+  --bg-surface-secondary: #EEF2F9;/* Elevated Surface / Inputs */
   --bg-surface-tertiary: #E2E8F0;
-  --text-primary: #0F172A;        /* Headings */
-  --text-secondary: #475569;      /* Descriptions */
-  --text-muted: #94A3B8;          /* Supporting Labels */
-  --border-color: #E2E8F0;        /* Card Borders */
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-glow: rgba(37, 99, 235, 0.3);
-  --primary-hover: #1D4ED8;       /* Hover State */
+  --text-primary: #182238;        /* Primary Text */
+  --text-secondary: #667085;      /* Secondary Text */
+  --text-muted: #94A3B8;          /* Muted Support */
+  --border-color: #E2E8F0;        /* Borders */
+  --border-subtle: rgba(24, 34, 56, 0.08);
+  --border-glow: rgba(104, 87, 245, 0.3);
+  --primary-hover: #5746E6;
 
   /* Functional Colors (Light) */
-  --status-success: #16A34A;
-  --status-warning: #D97706;
-  --status-error: #DC2626;
-  --status-info: #2563EB;
+  --status-success: #22C58B;
+  --status-warning: #F5B942;
+  --status-error: #F06474;
+  --status-info: #19C6D8;
 
   /* Shadow & Glass (Light) */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
-  --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.15);
-  --shadow-ai: 0 0 20px rgba(139, 92, 246, 0.15);
+  --shadow-md: 0 4px 14px rgba(24, 34, 56, 0.08);
+  --shadow-lg: 0 12px 32px rgba(24, 34, 56, 0.12);
+  --shadow-glow: 0 0 20px rgba(104, 87, 245, 0.15);
+  --shadow-ai: 0 0 20px rgba(25, 198, 216, 0.15);
 
-  --bg-glass: rgba(255, 255, 255, 0.9);
+  --bg-glass: rgba(255, 255, 255, 0.92);
   --bg-glass-card: rgba(255, 255, 255, 0.85);
 }
 
