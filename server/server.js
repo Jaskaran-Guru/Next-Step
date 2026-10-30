@@ -21,6 +21,8 @@ const childrenRoutes = require('./routes/children.routes');
 const adminRoutes = require('./routes/admin.routes');
 const scholarshipsRoutes = require('./routes/scholarships.routes');
 const lifeSkillsRoutes = require('./routes/lifeskills.routes');
+const plannerRoutes = require('./routes/planner.routes');
+const communityRoutes = require('./routes/community.routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -50,6 +52,8 @@ app.use('/api/children', childrenRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/scholarships', scholarshipsRoutes);
 app.use('/api/lifeskills', lifeSkillsRoutes);
+app.use('/api/planner', plannerRoutes);
+app.use('/api/community', communityRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -101,3 +101,4 @@ const ScholarshipsView = {
 };
 
 window.ScholarshipsView = ScholarshipsView;
+

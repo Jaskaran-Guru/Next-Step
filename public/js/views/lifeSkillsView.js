@@ -128,3 +128,4 @@ const LifeSkillsView = {
 };
 
 window.LifeSkillsView = LifeSkillsView;
+

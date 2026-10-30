@@ -311,6 +311,49 @@ const API = {
       body: JSON.stringify({ role })
     });
     return res.json();
+  },
+
+  // Study Planner & Exam Calendar
+  async getExamCountdowns() {
+    const res = await fetch(`${API_BASE}/planner/countdown`);
+    return res.json();
+  },
+
+  async getStudySchedule() {
+    const res = await fetch(`${API_BASE}/planner/schedule`);
+    return res.json();
+  },
+
+  async addStudySlot(data) {
+    const res = await fetch(`${API_BASE}/planner/schedule`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  // Academic Community & Discussions
+  async getCommunityPosts(subject = 'All') {
+    const query = subject && subject !== 'All' ? `?subject=${encodeURIComponent(subject)}` : '';
+    const res = await fetch(`${API_BASE}/community/posts${query}`);
+    return res.json();
+  },
+
+  async createCommunityPost(data) {
+    const res = await fetch(`${API_BASE}/community/posts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async upvoteCommunityPost(id) {
+    const res = await fetch(`${API_BASE}/community/posts/${id}/upvote`, {
+      method: 'POST'
+    });
+    return res.json();
   }
 };
 

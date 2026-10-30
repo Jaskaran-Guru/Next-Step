@@ -71,6 +71,11 @@
           <span id="theme-label">Light</span>
         </button>
 
+        <!-- Language Switcher Pill -->
+        <button id="header-lang-btn" class="theme-toggle-btn" title="Toggle English / हिंदी / Hinglish" style="padding: 6px 12px; gap: 4px;">
+          <span id="current-lang-label">🌐 English</span>
+        </button>
+
         <!-- User Profile Badge -->
         <div class="user-profile-badge" id="profile-btn" title="Click to view/edit profile">
           <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" alt="Avatar" class="user-avatar" id="header-user-avatar">
@@ -969,6 +974,92 @@
         </div>
       </section>
 
+      <!-- VIEW 14: STUDY PLANNER & EXAM CALENDAR -->
+      <section id="view-planner" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="calendar" style="color: var(--brand-primary);"></i> Study Planner & Exam Calendar</h1>
+            <p class="section-subtitle">Countdown to major national examinations and time-boxed daily deep work routine</p>
+          </div>
+        </div>
+
+        <!-- Section 1: Major Exam Countdowns -->
+        <h3 style="font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:14px;">
+          ⏳ Upcoming Major Examination Countdowns
+        </h3>
+        <div id="planner-exams-grid" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:20px;margin-bottom:36px;">
+          <!-- Populated by PlannerView -->
+        </div>
+
+        <!-- Section 2: Daily Focus Schedule & Timeline -->
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:36px;">
+          <div>
+            <h3 style="font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:14px;">
+              ⏱️ Time-Boxed Daily Deep Work Routine
+            </h3>
+            <div id="planner-schedule-timeline">
+              <!-- Timeline blocks populated by PlannerView -->
+            </div>
+          </div>
+
+          <!-- Add Custom Study Block -->
+          <div class="lecture-meta-card" style="margin:0;">
+            <h3 style="font-size:1.1rem;font-weight:800;color:var(--text-primary);margin-bottom:6px;">
+              + Add Custom Study Slot
+            </h3>
+            <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:14px;">Customize your personal routine</p>
+            <form id="planner-add-slot-form">
+              <div style="margin-bottom:10px;">
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Time Slot</label>
+                <input type="text" id="new-slot-time" placeholder="e.g. 05:00 PM - 06:30 PM" required style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+              </div>
+              <div style="margin-bottom:10px;">
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Activity Title</label>
+                <input type="text" id="new-slot-title" placeholder="e.g. Organic Chemistry Revision" required style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+              </div>
+              <div style="margin-bottom:10px;">
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Subject</label>
+                <input type="text" id="new-slot-subject" placeholder="e.g. Chemistry" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+              </div>
+              <div style="margin-bottom:14px;">
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Focus Tip</label>
+                <input type="text" id="new-slot-tip" placeholder="e.g. Solve 20 named reactions" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;font-size:0.82rem;padding:8px;">Add Slot →</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 15: ACADEMIC COMMUNITY & DISCUSSION FORUM -->
+      <section id="view-community" class="page-view">
+        <div class="section-header">
+          <div style="display:flex;justify-content:space-between;align-items:center;width:100%;flex-wrap:wrap;gap:12px;">
+            <div>
+              <h1 class="section-title"><i data-lucide="message-square" style="color: var(--brand-secondary);"></i> Moderated Academic Community</h1>
+              <p class="section-subtitle">Ask questions, share problem-solving strategies, and learn with faculty & verified peers</p>
+            </div>
+            <button class="btn btn-primary" onclick="document.getElementById('community-ask-modal').classList.add('active')" style="font-size:0.85rem;padding:8px 18px;">
+              + Ask Community Question
+            </button>
+          </div>
+        </div>
+
+        <!-- Subject Filters -->
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:20px;">
+          <button class="community-filter-pill active" data-sub="All" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-primary);font-size:0.8rem;font-weight:700;cursor:pointer;">All Discussions</button>
+          <button class="community-filter-pill" data-sub="Physics" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">⚛️ Physics</button>
+          <button class="community-filter-pill" data-sub="Mathematics" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">📐 Mathematics</button>
+          <button class="community-filter-pill" data-sub="Computer Science" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">💻 Computer Science</button>
+          <button class="community-filter-pill" data-sub="Stream Decision" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">🧭 Stream & Career Choice</button>
+        </div>
+
+        <!-- Posts List Container -->
+        <div id="community-posts-container" style="max-width:850px;">
+          <!-- Populated by CommunityView -->
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -1152,6 +1243,41 @@
     </div>
   </div>
 
+  <!-- COMMUNITY ASK QUESTION MODAL -->
+  <div class="modal-overlay" id="community-ask-modal" style="z-index: 10001;">
+    <div class="modal-box" style="max-width: 580px; padding: 28px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <h3 style="font-size:1.2rem;font-weight:800;color:var(--text-primary);margin:0;">💬 Ask the Academic Community</h3>
+        <button onclick="document.getElementById('community-ask-modal').classList.remove('active')" style="background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer;">&times;</button>
+      </div>
+      <form id="community-ask-form">
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Subject / Stream Category</label>
+          <select id="new-post-subject" class="ctrl-select" style="width:100%;padding:8px;">
+            <option value="Physics">Physics</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Stream Decision">Stream & Career Choice</option>
+            <option value="Parenting">Parenting & Early Childhood</option>
+          </select>
+        </div>
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Question Title</label>
+          <input type="text" id="new-post-title" required placeholder="e.g. How to solve collision problems in Center of Mass frame?" style="width:100%;padding:10px 14px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.9rem;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Detailed Context or Working Steps</label>
+          <textarea id="new-post-content" required rows="4" placeholder="Describe where you got stuck, options considered, or specific doubts..." style="width:100%;padding:10px 14px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;resize:vertical;"></textarea>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:10px;">
+          <button type="button" class="btn btn-outline" onclick="document.getElementById('community-ask-modal').classList.remove('active')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Post to Community →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="toast-container"></div>
 
@@ -1159,6 +1285,7 @@
   <script src="js/api.js"></script>
   <script src="js/state.js"></script>
   <script src="js/stageConfig.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/universalSearch.js"></script>
   <script src="js/views/batchesView.js"></script>
   <script src="js/views/classroomView.js"></script>
@@ -1170,6 +1297,8 @@
   <script src="js/views/parentView.js"></script>
   <script src="js/views/lifeSkillsView.js"></script>
   <script src="js/views/scholarshipsView.js"></script>
+  <script src="js/views/plannerView.js"></script>
+  <script src="js/views/communityView.js"></script>
   <script src="js/views/adminView.js"></script>
   <script src="js/views/khazanaView.js"></script>
   <script src="js/views/analyticsView.js"></script>

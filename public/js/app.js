@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // 6. Initialize Views
+  I18nEngine.init();
   await BatchesView.init();
   ClassroomView.init();
   await TestView.init();
@@ -33,6 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   await ParentView.init();
   await LifeSkillsView.init();
   await ScholarshipsView.init();
+  await PlannerView.init();
+  await CommunityView.init();
   await AdminView.init();
   await KhazanaView.init();
   await AnalyticsView.init();
@@ -113,6 +116,8 @@ function switchView(viewId) {
   else if (viewId === 'parent') ParentView.init?.();
   else if (viewId === 'lifeskills') LifeSkillsView.init?.();
   else if (viewId === 'scholarships') ScholarshipsView.init?.();
+  else if (viewId === 'planner') PlannerView.init?.();
+  else if (viewId === 'community') CommunityView.init?.();
   else if (viewId === 'admin') AdminView.init?.();
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
