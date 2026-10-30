@@ -3,17 +3,20 @@ require('dotenv').config();
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pw_nextstep';
 
-let isConnected = false;
+let cachedConnection = null;
 
 const connectDB = async () => {
-  if (isConnected) return mongoose.connection;
+  // If already connected, reuse connection (critical for Vercel serverless functions)
+  if (cachedConnection && mongoose.connection.readyState === 1) {
+    return cachedConnection;
+  }
 
   try {
     const conn = await mongoose.connect(MONGODB_URI, {
       serverSelectionTimeoutMS: 10000,
       autoIndex: true,
     });
-    isConnected = true;
+    cachedConnection = conn;
     console.log(`✅ MongoDB Atlas Connected: ${conn.connection.host} / Database: ${conn.connection.name}`);
     return conn;
   } catch (error) {

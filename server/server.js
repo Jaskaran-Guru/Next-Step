@@ -54,7 +54,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicDirectory, 'index.html'));
 });
 
-// Start Server
+// Start Server (only when run directly, e.g. locally or on Render/VPS)
 const startServer = async () => {
   try {
     await connectDB();
@@ -69,4 +69,8 @@ const startServer = async () => {
   }
 };
 
-startServer();
+if (require.main === module) {
+  startServer();
+}
+
+module.exports = app;

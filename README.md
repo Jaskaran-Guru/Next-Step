@@ -84,7 +84,23 @@ Open [http://localhost:5000](http://localhost:5000) in your browser.
 
 ---
 
-## 🌐 Deploying to Render.com (Free)
+## ⚡ Deploying to Vercel (Fast & Free)
+
+NextStep is configured for zero-friction serverless deployment on **Vercel** via `vercel.json` and `api/index.js`:
+
+1. Sign up / Log in to [**vercel.com**](https://vercel.com/) with your GitHub account.
+2. Click **Add New...** $\rightarrow$ **Project**.
+3. Import your repository: `Jaskaran-Guru/Next-Step`.
+4. Framework Preset: Leave as **Other**.
+5. Under **Environment Variables**, add:
+   - `MONGODB_URI` = *(your MongoDB Atlas connection string)*
+   - `GEMINI_API_KEY` = *(your Google Gemini API key)*
+6. Click **Deploy**.
+7. Vercel will build and deploy the app in ~30 seconds, giving you a custom `.vercel.app` URL!
+
+---
+
+## 🌐 Deploying to Render.com (Alternative Free Host)
 
 Deploying NextStep on Render takes less than 2 minutes using the bundled Blueprint:
 
@@ -122,3 +138,4 @@ Deploying NextStep on Render takes less than 2 minutes using the bundled Bluepri
 
 ## 📄 License
 ISC License — built for students, parents, and lifelong learners.
+
