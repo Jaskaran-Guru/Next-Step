@@ -18,6 +18,9 @@ const stagesRoutes = require('./routes/stages.routes');
 const aiRoutes = require('./routes/ai.routes');
 const careersRoutes = require('./routes/careers.routes');
 const childrenRoutes = require('./routes/children.routes');
+const adminRoutes = require('./routes/admin.routes');
+const scholarshipsRoutes = require('./routes/scholarships.routes');
+const lifeSkillsRoutes = require('./routes/lifeskills.routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -44,6 +47,9 @@ app.use('/api/stages', stagesRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/careers', careersRoutes);
 app.use('/api/children', childrenRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/scholarships', scholarshipsRoutes);
+app.use('/api/lifeskills', lifeSkillsRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

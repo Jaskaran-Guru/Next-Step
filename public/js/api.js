@@ -257,6 +257,60 @@ const API = {
       method: 'DELETE'
     });
     return res.json();
+  },
+
+  // Scholarships Finder
+  async getScholarships(category = 'All', stage = '') {
+    const params = new URLSearchParams();
+    if (category && category !== 'All') params.append('category', category);
+    if (stage) params.append('stage', stage);
+    const query = params.toString() ? `?${params.toString()}` : '';
+    const res = await fetch(`${API_BASE}/scholarships${query}`);
+    return res.json();
+  },
+
+  // Personality & Life Skills
+  async getLifeSkills() {
+    const res = await fetch(`${API_BASE}/lifeskills`);
+    return res.json();
+  },
+
+  async submitLifeSkillsDiagnostic(answers) {
+    const res = await fetch(`${API_BASE}/lifeskills/diagnostic`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answers })
+    });
+    return res.json();
+  },
+
+  // Mentor & Admin Governance
+  async getAdminMetrics() {
+    const res = await fetch(`${API_BASE}/admin/metrics`);
+    return res.json();
+  },
+
+  async createAdminBatch(data) {
+    const res = await fetch(`${API_BASE}/admin/batches`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async getAdminUsers() {
+    const res = await fetch(`${API_BASE}/admin/users`);
+    return res.json();
+  },
+
+  async updateUserRole(id, role) {
+    const res = await fetch(`${API_BASE}/admin/users/${id}/role`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role })
+    });
+    return res.json();
   }
 };
 

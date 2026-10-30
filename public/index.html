@@ -773,6 +773,202 @@
         </div>
       </section>
 
+      <!-- VIEW 11: PERSONALITY & LIFE SKILLS DEVELOPMENT -->
+      <section id="view-lifeskills" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="zap" style="color: var(--brand-primary);"></i> Personality & Life Skills Academy</h1>
+            <p class="section-subtitle">Master executive communication, financial compounding, mental models, and emotional anxiety management</p>
+          </div>
+        </div>
+
+        <!-- Life Skills Diagnostic Self-Assessment -->
+        <div class="lecture-meta-card" style="margin-bottom:28px;background:linear-gradient(135deg, rgba(104,87,245,0.08), rgba(25,198,216,0.05));border:1px solid rgba(104,87,245,0.3);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+            <div>
+              <h3 style="font-size:1.2rem;font-weight:800;color:var(--text-primary);">🧠 60-Second Life Skills Diagnostic Audit</h3>
+              <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:2px;">Rate your confidence on a scale of 1 (Needs Work) to 5 (Mastered) to receive a personalized growth plan</p>
+            </div>
+            <button class="btn btn-primary" id="btn-submit-lifeskills-quiz" style="font-size:0.85rem;padding:8px 18px;">
+              Calculate Growth Plan →
+            </button>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:14px;">
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">🗣️ Public Speaking</label>
+              <select id="diag-speaking" class="ctrl-select" style="width:100%;padding:8px;">
+                <option value="1">1 - High Stage Fright</option>
+                <option value="2">2 - Hesitant Speaker</option>
+                <option value="3" selected>3 - Moderate / Average</option>
+                <option value="4">4 - Confident Presenter</option>
+                <option value="5">5 - Eloquent Keynote</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">💰 Financial Literacy</label>
+              <select id="diag-finance" class="ctrl-select" style="width:100%;padding:8px;">
+                <option value="1">1 - Zero Knowledge</option>
+                <option value="2" selected>2 - Basic Savings</option>
+                <option value="3">3 - Compounding & SIP</option>
+                <option value="4">4 - Index & Asset Class</option>
+                <option value="5">5 - Financial Autonomy</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">🧘 Exam Anxiety & EQ</label>
+              <select id="diag-anxiety" class="ctrl-select" style="width:100%;padding:8px;">
+                <option value="1">1 - High Exam Panic</option>
+                <option value="2">2 - Occasional Stress</option>
+                <option value="3" selected>3 - Manageable Focus</option>
+                <option value="4">4 - High Composure</option>
+                <option value="5">5 - Unshakeable Calm</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">⏱️ Deep Work & Focus</label>
+              <select id="diag-time" class="ctrl-select" style="width:100%;padding:8px;">
+                <option value="1">1 - Severe Phone Distraction</option>
+                <option value="2">2 - 30-min Max Attention</option>
+                <option value="3">3 - 1-Hour Focus</option>
+                <option value="4" selected>4 - 90-min Deep Work</option>
+                <option value="5">5 - 4+ Hours Flow State</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">🧩 Critical Thinking</label>
+              <select id="diag-logic" class="ctrl-select" style="width:100%;padding:8px;">
+                <option value="1">1 - Pure Rote Learner</option>
+                <option value="2">2 - Memorization Focus</option>
+                <option value="3">3 - Conceptual Thinker</option>
+                <option value="4" selected>4 - First-Principles Thinker</option>
+                <option value="5">5 - Mental Model Strategist</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="lifeskills-diagnostic-result"></div>
+        </div>
+
+        <!-- Modules Grid -->
+        <div id="lifeskills-modules-grid" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:20px;margin-bottom:36px;">
+          <!-- Dynamically populated by LifeSkillsView -->
+        </div>
+      </section>
+
+      <!-- VIEW 12: SCHOLARSHIPS FINDER -->
+      <section id="view-scholarships" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="award" style="color: var(--status-success);"></i> Scholarships & Financial Aid Finder</h1>
+            <p class="section-subtitle">National, state, and foundation scholarships with verified eligibility criteria, grant amounts, and official application portals</p>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:20px;">
+          <button class="scholarship-filter-pill active" data-cat="All" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-primary);font-size:0.8rem;font-weight:700;cursor:pointer;">All Scholarships</button>
+          <button class="scholarship-filter-pill" data-cat="Higher Education" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">🎓 Higher Ed (B.Sc / M.Sc)</button>
+          <button class="scholarship-filter-pill" data-cat="Engineering" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">⚙️ Engineering & Medical</button>
+          <button class="scholarship-filter-pill" data-cat="School Education" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">👧 School & Girl Child</button>
+          <button class="scholarship-filter-pill" data-cat="Talent" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;">🏆 NTSE & Olympiad</button>
+        </div>
+
+        <!-- Scholarships Grid -->
+        <div id="scholarships-grid-container" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));gap:20px;margin-bottom:36px;">
+          <!-- Dynamically populated by ScholarshipsView -->
+        </div>
+      </section>
+
+      <!-- VIEW 13: MENTOR & ADMIN GOVERNANCE CONSOLE -->
+      <section id="view-admin" class="page-view">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title"><i data-lucide="shield-check" style="color: var(--brand-primary);"></i> Mentor & Admin Governance Console</h1>
+            <p class="section-subtitle">Real-time platform telemetry, course authoring, and user role governance</p>
+          </div>
+        </div>
+
+        <!-- Metrics Cards Grid -->
+        <div id="admin-metrics-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;margin-bottom:28px;">
+          <!-- Populated by AdminView -->
+        </div>
+
+        <!-- Course Creation & Management Grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;">
+          <!-- Create Batch Form -->
+          <div class="lecture-meta-card" style="margin:0;">
+            <h3 style="font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:6px;">
+              <i data-lucide="plus-circle" style="color:var(--brand-primary);"></i> Publish New Batch / Course
+            </h3>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;">Instant publishing to NextStep catalog & MongoDB Atlas</p>
+
+            <form id="admin-create-batch-form">
+              <div style="margin-bottom:12px;">
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Batch Title</label>
+                <input type="text" id="new-batch-title" required placeholder="e.g. Lakshya AI & Data Science 2026" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+                <div>
+                  <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Exam Category</label>
+                  <select id="new-batch-category" class="ctrl-select" style="width:100%;padding:8px;">
+                    <option value="JEE Mains & Advanced">JEE Mains & Advanced</option>
+                    <option value="NEET UG">NEET UG</option>
+                    <option value="Class 10 Foundation">Class 9th & 10th</option>
+                    <option value="College & SDE">College & SDE</option>
+                    <option value="GATE CS">GATE CS</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Price (₹, 0 for Free)</label>
+                  <input type="number" id="new-batch-price" value="0" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+                </div>
+              </div>
+
+              <div style="margin-bottom:12px;">
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Instructors / Faculty (comma-separated)</label>
+                <input type="text" id="new-batch-faculty" value="Rajesh Sir, Dr. Ananya" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+              </div>
+
+              <div style="margin-bottom:16px;">
+                <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;">Tagline</label>
+                <input type="text" id="new-batch-tagline" placeholder="e.g. Master Neural Networks, Transformers & Cloud Deployments" style="width:100%;padding:8px 12px;background:var(--bg-surface-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.85rem;">
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%;padding:10px;font-size:0.85rem;font-weight:700;">
+                🚀 Publish Batch Live
+              </button>
+            </form>
+          </div>
+
+          <!-- User Role Governance Table -->
+          <div class="lecture-meta-card" style="margin:0;overflow:hidden;display:flex;flex-direction:column;">
+            <h3 style="font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:6px;">
+              <i data-lucide="users" style="color:var(--brand-secondary);"></i> User Role & Permission Governance
+            </h3>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;">Elevate users to Student, Parent, Mentor, or Admin</p>
+
+            <div style="overflow-x:auto;max-height:300px;overflow-y:auto;">
+              <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+                <thead>
+                  <tr style="border-bottom:1px solid var(--border-color);text-align:left;color:var(--text-muted);font-size:0.75rem;text-transform:uppercase;">
+                    <th style="padding:8px 12px;">User</th>
+                    <th style="padding:8px 12px;">Email</th>
+                    <th style="padding:8px 12px;">Life Stage</th>
+                    <th style="padding:8px 12px;">Role</th>
+                    <th style="padding:8px 12px;">Joined</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-users-table-body">
+                  <!-- Populated dynamically by AdminView -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -832,6 +1028,9 @@
             </select>
           </div>
           <button class="btn btn-primary" id="save-profile-btn" style="margin-top: 10px;">Save Profile Changes</button>
+          <button class="btn btn-outline" onclick="window.closeProfileModal(); window.switchView('admin');" style="margin-top: 6px; font-size: 0.82rem; width: 100%;">
+            🛡️ Open Mentor & Admin Console →
+          </button>
         </div>
       </div>
     </div>
@@ -969,6 +1168,9 @@
   <script src="js/views/stagesView.js"></script>
   <script src="js/views/careerView.js"></script>
   <script src="js/views/parentView.js"></script>
+  <script src="js/views/lifeSkillsView.js"></script>
+  <script src="js/views/scholarshipsView.js"></script>
+  <script src="js/views/adminView.js"></script>
   <script src="js/views/khazanaView.js"></script>
   <script src="js/views/analyticsView.js"></script>
   <script src="js/app.js"></script>

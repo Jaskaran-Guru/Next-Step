@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   await StagesView.init();
   await CareerView.init();
   await ParentView.init();
+  await LifeSkillsView.init();
+  await ScholarshipsView.init();
+  await AdminView.init();
   await KhazanaView.init();
   await AnalyticsView.init();
   UniversalSearch.init();
@@ -108,6 +111,9 @@ function switchView(viewId) {
   else if (viewId === 'tests') TestView.loadTests?.();
   else if (viewId === 'careers') CareerView.init?.();
   else if (viewId === 'parent') ParentView.init?.();
+  else if (viewId === 'lifeskills') LifeSkillsView.init?.();
+  else if (viewId === 'scholarships') ScholarshipsView.init?.();
+  else if (viewId === 'admin') AdminView.init?.();
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (window.lucide) window.lucide.createIcons();

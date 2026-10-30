@@ -51,3 +51,4 @@ const childSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Child', childSchema);
+

@@ -210,3 +210,4 @@ const UniversalSearch = {
 };
 
 window.UniversalSearch = UniversalSearch;
+
