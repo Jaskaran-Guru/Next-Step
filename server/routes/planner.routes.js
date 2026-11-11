@@ -101,19 +101,23 @@ const DEFAULT_SCHEDULE = [
 ];
 
 // 1. Get Exam Countdowns
-router.get('/countdown', (req, res) => {
+router.get(['/countdown', '/countdowns'], (req, res) => {
   return res.json({ success: true, count: EXAM_COUNTDOWNS.length, exams: EXAM_COUNTDOWNS });
 });
 
 // 2. Get User Study Schedule
 router.get('/schedule', async (req, res) => {
   try {
-    const user = await User.findOne();
-    return res.json({
-      success: true,
-      targetExam: user?.targetExam || 'JEE Mains & Advanced',
-      schedule: DEFAULT_SCHEDULE
-    });
+    const mongoose = require('mongoose');
+    if (mongoose.connection.readyState === 1) {
+      const user = await User.findOne();
+      return res.json({
+        success: true,
+        targetExam: user?.targetExam || 'JEE Mains & Advanced',
+        schedule: DEFAULT_SCHEDULE
+      });
+    }
+    return res.json({ success: true, targetExam: 'JEE Mains & Advanced', schedule: DEFAULT_SCHEDULE });
   } catch (error) {
     return res.json({ success: true, schedule: DEFAULT_SCHEDULE });
   }

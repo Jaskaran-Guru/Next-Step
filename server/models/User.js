@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true, lowercase: true, trim: true },
   phone: { type: String, default: '+91 98765 43210' },
   avatar: { type: String, default: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80' },
-  targetExam: { type: String, default: 'JEE Mains & Advanced', enum: ['JEE Mains & Advanced', 'NEET UG', 'Class 10 Foundation', 'GATE CS', 'UPSC'] },
+  role: { type: String, enum: ['student', 'parent', 'mentor', 'admin'], default: 'student' },
+  targetExam: { type: String, default: 'JEE Mains & Advanced' },
   currentClass: { type: String, default: 'Class 12th' },
   // Life Stage = entire app experience pivot point
   lifeStage: {
@@ -15,6 +16,24 @@ const UserSchema = new mongoose.Schema({
   },
   childAge: { type: String, default: '' }, // For parents tracking child's age
   enrolledBatches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Batch' }],
+  trackedExams: [{
+    examId: String,
+    examName: String,
+    targetYear: String,
+    targetScore: String,
+    status: { type: String, default: 'In Preparation' },
+    trackedAt: { type: Date, default: Date.now }
+  }],
+  bookmarks: [{
+    id: String,
+    type: { type: String },
+    refId: String,
+    title: String,
+    subtitle: String,
+    icon: String,
+    url: String,
+    createdAt: { type: Date, default: Date.now }
+  }],
   coins: { type: Number, default: 250 },
   streakDays: { type: Number, default: 14 },
   studyMinutesTotal: { type: Number, default: 1840 },

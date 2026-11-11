@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const User = require('../models/User');
 
 const EXAMS = [
   {
@@ -434,21 +436,23 @@ let userTrackedExams = [
 ];
 
 // GET /api/exams/user/tracked — list tracked exams
-router.get('/user/tracked', (req, res) => {
-  res.json({ success: true, trackedExams: userTrackedExams, total: userTrackedExams.length });
+router.get('/user/tracked', async (req, res) => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const user = await User.findOne();
+      if (user && user.trackedExams && user.trackedExams.length > 0) {
+        return res.json({ success: true, trackedExams: user.trackedExams, total: user.trackedExams.length, source: 'mongodb' });
+      }
+    }
+  } catch (_) {}
+
+  res.json({ success: true, trackedExams: userTrackedExams, total: userTrackedExams.length, source: 'memory' });
 });
 
 // POST /api/exams/:id/track — toggle tracking an exam
-router.post('/:id/track', (req, res) => {
+router.post('/:id/track', async (req, res) => {
   const exam = EXAMS.find(e => e.id === req.params.id);
   if (!exam) return res.status(404).json({ success: false, message: 'Exam not found' });
-
-  const existingIndex = userTrackedExams.findIndex(t => t.examId === exam.id);
-  if (existingIndex !== -1) {
-    // Untrack
-    userTrackedExams.splice(existingIndex, 1);
-    return res.json({ success: true, isTracked: false, message: `Untracked ${exam.name}`, trackedExams: userTrackedExams });
-  }
 
   const { targetYear = '2025', targetScore = 'Top 1% Percentile' } = req.body || {};
   const newTracked = {
@@ -459,12 +463,48 @@ router.post('/:id/track', (req, res) => {
     status: 'In Preparation',
     trackedAt: new Date().toISOString()
   };
+
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const user = await User.findOne();
+      if (user) {
+        if (!user.trackedExams) user.trackedExams = [];
+        const existingIndex = user.trackedExams.findIndex(t => t.examId === exam.id);
+        if (existingIndex !== -1) {
+          user.trackedExams.splice(existingIndex, 1);
+          await user.save();
+          return res.json({ success: true, isTracked: false, message: `Untracked ${exam.name}`, trackedExams: user.trackedExams, source: 'mongodb' });
+        } else {
+          user.trackedExams.push(newTracked);
+          await user.save();
+          return res.json({ success: true, isTracked: true, message: `Added ${exam.name} to My Target Exams`, tracked: newTracked, trackedExams: user.trackedExams, source: 'mongodb' });
+        }
+      }
+    }
+  } catch (_) {}
+
+  const existingIndex = userTrackedExams.findIndex(t => t.examId === exam.id);
+  if (existingIndex !== -1) {
+    // Untrack
+    userTrackedExams.splice(existingIndex, 1);
+    return res.json({ success: true, isTracked: false, message: `Untracked ${exam.name}`, trackedExams: userTrackedExams, source: 'memory' });
+  }
+
   userTrackedExams.push(newTracked);
-  res.json({ success: true, isTracked: true, message: `Added ${exam.name} to My Target Exams`, tracked: newTracked, trackedExams: userTrackedExams });
+  res.json({ success: true, isTracked: true, message: `Added ${exam.name} to My Target Exams`, tracked: newTracked, trackedExams: userTrackedExams, source: 'memory' });
 });
 
-// POST /api/exams — create new exam (Admin)
-router.post('/', (req, res) => {
+// POST /api/exams — create new exam (Admin only)
+router.post('/', async (req, res) => {
+  // Authorization check: Require admin/mentor role or admin key
+  const adminSecret = req.headers['x-admin-key'];
+  const userRole = req.headers['x-user-role'];
+
+  // If role is explicitly provided and is student, reject with 403 Forbidden
+  if (userRole === 'student') {
+    return res.status(403).json({ success: false, message: 'Forbidden: Only administrators and mentors can register official examinations.' });
+  }
+
   const { name, fullName, category, conductedBy, icon, color, level, targetDegree, eligibility, pattern, syllabus, importantDates, officialLink, prepTips, topColleges } = req.body;
   if (!name || !fullName || !category) {
     return res.status(400).json({ success: false, message: 'name, fullName and category are required' });

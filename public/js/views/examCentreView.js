@@ -504,3 +504,4 @@ const ExamCentreView = {
 };
 
 window.ExamCentreView = ExamCentreView;
+
