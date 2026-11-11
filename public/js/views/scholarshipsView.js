@@ -81,6 +81,9 @@ const ScholarshipsView = {
           <a href="${item.officialUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1;text-align:center;font-size:0.82rem;padding:8px 14px;text-decoration:none;">
             Official Portal Link ↗
           </a>
+          <button class="btn btn-outline" style="padding:8px 14px;font-size:0.9rem;" onclick="BookmarksManager.toggleBookmark('scholarship', '${item.id}', '${item.title.replace(/'/g, "\\'")}', '${item.provider} · ${item.amount}', '🎓', '${item.officialUrl}')" title="Bookmark scholarship">
+            🔖
+          </button>
         </div>
       </div>
     `).join('');

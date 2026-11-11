@@ -23,6 +23,10 @@ const scholarshipsRoutes = require('./routes/scholarships.routes');
 const lifeSkillsRoutes = require('./routes/lifeskills.routes');
 const plannerRoutes = require('./routes/planner.routes');
 const communityRoutes = require('./routes/community.routes');
+const notificationsRoutes = require('./routes/notifications.routes');
+const bookmarksRoutes = require('./routes/bookmarks.routes');
+const achievementsRoutes = require('./routes/achievements.routes');
+const examsRoutes = require('./routes/exams.routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -54,12 +58,16 @@ app.use('/api/scholarships', scholarshipsRoutes);
 app.use('/api/lifeskills', lifeSkillsRoutes);
 app.use('/api/planner', plannerRoutes);
 app.use('/api/community', communityRoutes);
+app.use('/api/notifications', notificationsRoutes);
+app.use('/api/bookmarks', bookmarksRoutes);
+app.use('/api/achievements', achievementsRoutes);
+app.use('/api/exams', examsRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ONLINE',
-    platform: 'NextStep (Physics Wallah Clone)',
+    platform: 'NextStep OS – Complete Education, Career & Personal Development Platform',
     version: '1.0.0',
     timestamp: new Date().toISOString()
   });

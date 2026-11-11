@@ -202,15 +202,18 @@ const ClassroomView = {
     container.innerHTML = this.currentLectures.map((lec, idx) => {
       const isActive = this.currentLecture && this.currentLecture._id === lec._id;
       return `
-        <div class="lecture-item ${isActive ? 'active' : ''}" onclick="ClassroomView.loadLecture('${lec._id}')">
+        <div class="lecture-item ${isActive ? 'active' : ''}" onclick="ClassroomView.loadLecture('${lec._id}')" style="display:flex;align-items:center;">
           <div class="lecture-index">${idx + 1}</div>
-          <div class="lecture-item-info">
+          <div class="lecture-item-info" style="flex:1;min-width:0;">
             <div class="lecture-item-title">${lec.title}</div>
             <div class="lecture-item-meta">
               <span>⏱ ${lec.durationMinutes} mins</span>
               <span>• ${lec.facultyName || 'Alakh Sir'}</span>
             </div>
           </div>
+          <button class="btn-text-action" onclick="event.stopPropagation(); BookmarksManager.toggleBookmark('lecture', '${lec._id}', '${(lec.title || '').replace(/'/g, "\\'")}', '${lec.durationMinutes} mins · ${lec.facultyName || 'Faculty'}', '🎬')" style="background:none;border:none;color:var(--text-muted);cursor:pointer;padding:4px 8px;font-size:1rem;flex-shrink:0;" title="Save to Bookmarks">
+            🔖
+          </button>
         </div>
       `;
     }).join('');

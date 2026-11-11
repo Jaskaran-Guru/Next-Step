@@ -76,6 +76,18 @@
           <span id="current-lang-label">🌐 English</span>
         </button>
 
+        <!-- Bookmarks Shortcut Button -->
+        <button class="theme-toggle-btn" id="header-bookmarks-btn" title="Saved Bookmarks" style="position:relative;padding:6px 10px;">
+          <i data-lucide="bookmark" style="width:16px;height:16px;"></i>
+          <span id="header-bookmarks-count" class="badge-counter" style="display:none;position:absolute;top:-4px;right:-4px;background:var(--brand-primary);color:#fff;font-size:0.62rem;font-weight:800;border-radius:10px;padding:1px 5px;line-height:1;">0</span>
+        </button>
+
+        <!-- Notifications Bell Button -->
+        <button class="theme-toggle-btn" id="header-notifications-btn" title="Notifications & Deadlines" style="position:relative;padding:6px 10px;">
+          <i data-lucide="bell" style="width:16px;height:16px;"></i>
+          <span id="header-unread-badge" class="badge-counter" style="display:none;position:absolute;top:-4px;right:-4px;background:#F06474;color:#fff;font-size:0.62rem;font-weight:800;border-radius:10px;padding:1px 5px;line-height:1;min-width:16px;text-align:center;">0</span>
+        </button>
+
         <!-- User Profile Badge -->
         <div class="user-profile-badge" id="profile-btn" title="Click to view/edit profile">
           <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" alt="Avatar" class="user-avatar" id="header-user-avatar">
@@ -1278,6 +1290,68 @@
     </div>
   </div>
 
+  <!-- NOTIFICATIONS DRAWER MODAL -->
+  <div class="modal-overlay" id="notifications-drawer-modal" style="z-index: 10003;">
+    <div class="modal-box" style="max-width: 580px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh;">
+      <div style="padding: 20px 24px; background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)); border-bottom: 1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; border-radius:10px; background:rgba(240,100,116,0.15); color:#F06474; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">🔔</div>
+          <div>
+            <h3 style="margin:0; font-size:1.15rem; font-weight:800; color:var(--text-primary);">Notifications</h3>
+            <span id="notifications-drawer-count" style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">0 unread</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <button id="notifications-mark-all-btn" class="btn btn-outline" style="padding:5px 10px; font-size:0.75rem;">Mark all as read</button>
+          <button id="notifications-drawer-close" style="background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div style="padding: 10px 20px; background: var(--bg-surface-secondary); border-bottom: 1px solid var(--border-subtle); display:flex; gap:8px; overflow-x:auto;">
+        <button class="notif-filter-pill active" data-filter="all" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:var(--brand-primary); color:#fff; font-size:0.75rem; font-weight:700; cursor:pointer;">All</button>
+        <button class="notif-filter-pill" data-filter="unread" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:transparent; color:var(--text-secondary); font-size:0.75rem; font-weight:700; cursor:pointer;">Unread</button>
+        <button class="notif-filter-pill" data-filter="exam" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:transparent; color:var(--text-secondary); font-size:0.75rem; font-weight:700; cursor:pointer;">Exam Alerts</button>
+        <button class="notif-filter-pill" data-filter="batch" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:transparent; color:var(--text-secondary); font-size:0.75rem; font-weight:700; cursor:pointer;">Batches</button>
+        <button class="notif-filter-pill" data-filter="doubt" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:transparent; color:var(--text-secondary); font-size:0.75rem; font-weight:700; cursor:pointer;">Doubts</button>
+      </div>
+
+      <!-- Notifications Container -->
+      <div id="notifications-list-container" style="flex:1; overflow-y:auto; max-height:55vh;">
+        <!-- Injected by NotificationsView -->
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKMARKS MODAL -->
+  <div class="modal-overlay" id="bookmarks-modal" style="z-index: 10003;">
+    <div class="modal-box" style="max-width: 620px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh;">
+      <div style="padding: 20px 24px; background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)); border-bottom: 1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; border-radius:10px; background:rgba(104,87,245,0.15); color:var(--brand-primary); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">🔖</div>
+          <div>
+            <h3 style="margin:0; font-size:1.15rem; font-weight:800; color:var(--text-primary);">Saved Bookmarks</h3>
+            <span id="bookmarks-modal-count" style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">0 saved</span>
+          </div>
+        </div>
+        <button id="bookmarks-modal-close" style="background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div style="padding: 10px 20px; background: var(--bg-surface-secondary); border-bottom: 1px solid var(--border-subtle); display:flex; gap:8px; overflow-x:auto;">
+        <button class="bookmark-filter-pill active" data-filter="all" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:var(--brand-primary); color:#fff; font-size:0.75rem; font-weight:700; cursor:pointer;">All Items</button>
+        <button class="bookmark-filter-pill" data-filter="lecture" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:transparent; color:var(--text-secondary); font-size:0.75rem; font-weight:700; cursor:pointer;">🎬 Lectures</button>
+        <button class="bookmark-filter-pill" data-filter="career" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:transparent; color:var(--text-secondary); font-size:0.75rem; font-weight:700; cursor:pointer;">💼 Careers</button>
+        <button class="bookmark-filter-pill" data-filter="scholarship" style="padding:4px 12px; border-radius:16px; border:1px solid var(--border-subtle); background:transparent; color:var(--text-secondary); font-size:0.75rem; font-weight:700; cursor:pointer;">🎓 Scholarships</button>
+      </div>
+
+      <!-- Bookmarks Container -->
+      <div id="bookmarks-list-container" style="flex:1; overflow-y:auto; max-height:55vh;">
+        <!-- Injected by BookmarksView -->
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="toast-container"></div>
 
@@ -1302,6 +1376,8 @@
   <script src="js/views/adminView.js"></script>
   <script src="js/views/khazanaView.js"></script>
   <script src="js/views/analyticsView.js"></script>
+  <script src="js/views/notificationsView.js"></script>
+  <script src="js/views/bookmarksView.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

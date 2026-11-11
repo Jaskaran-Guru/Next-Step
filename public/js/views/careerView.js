@@ -93,6 +93,10 @@ const CareerView = {
           <button class="btn btn-outline" style="flex:1;font-size:0.8rem;padding:8px 12px;" onclick="CareerView.openCareerDetails('${career.slug}')">
             Full Profile →
           </button>
+          <button class="btn btn-outline" style="padding:8px 12px;font-size:0.9rem;" onclick="BookmarksManager.toggleBookmark('career', '${career.slug}', '${career.title.replace(/'/g, "\\'")}', '${career.category} · ${career.approxSalaryRange?.fresher || 'High Demand'}', '💼')" title="Bookmark this career">
+            🔖
+          </button>
+        </div>
           <button class="btn btn-primary" style="flex:1;font-size:0.8rem;padding:8px 12px;" onclick="CareerView.generateCareerRoadmap('${career.title}')">
             Add to Roadmap
           </button>

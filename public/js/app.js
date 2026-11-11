@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   await AdminView.init();
   await KhazanaView.init();
   await AnalyticsView.init();
+  await NotificationsView.init();
+  await BookmarksView.init();
   UniversalSearch.init();
 
   // 7. Bind Global Navigation

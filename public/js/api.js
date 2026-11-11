@@ -354,6 +354,109 @@ const API = {
       method: 'POST'
     });
     return res.json();
+  },
+
+  // ==========================================
+  // NOTIFICATIONS
+  // ==========================================
+  async getNotifications() {
+    try {
+      const res = await fetch(`${API_BASE}/notifications`);
+      return await res.json();
+    } catch (err) {
+      console.warn('API getNotifications error:', err);
+      return { success: false, notifications: [], unreadCount: 0 };
+    }
+  },
+
+  async getUnreadNotificationCount() {
+    try {
+      const res = await fetch(`${API_BASE}/notifications/unread-count`);
+      return await res.json();
+    } catch (err) {
+      return { success: false, unreadCount: 0 };
+    }
+  },
+
+  async markNotificationRead(id) {
+    try {
+      const res = await fetch(`${API_BASE}/notifications/${id}/read`, { method: 'PUT' });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  async markAllNotificationsRead() {
+    try {
+      const res = await fetch(`${API_BASE}/notifications/read-all`, { method: 'PUT' });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  async deleteNotification(id) {
+    try {
+      const res = await fetch(`${API_BASE}/notifications/${id}`, { method: 'DELETE' });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  // ==========================================
+  // BOOKMARKS
+  // ==========================================
+  async getBookmarks(type = null) {
+    try {
+      const query = type ? `?type=${encodeURIComponent(type)}` : '';
+      const res = await fetch(`${API_BASE}/bookmarks${query}`);
+      return await res.json();
+    } catch (err) {
+      console.warn('API getBookmarks error:', err);
+      return { success: false, bookmarks: [], total: 0 };
+    }
+  },
+
+  async checkBookmark(type, refId) {
+    try {
+      const res = await fetch(`${API_BASE}/bookmarks/check/${encodeURIComponent(type)}/${encodeURIComponent(refId)}`);
+      return await res.json();
+    } catch (err) {
+      return { success: false, isBookmarked: false };
+    }
+  },
+
+  async addBookmark(data) {
+    try {
+      const res = await fetch(`${API_BASE}/bookmarks`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  async removeBookmark(id) {
+    try {
+      const res = await fetch(`${API_BASE}/bookmarks/${id}`, { method: 'DELETE' });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  async removeBookmarkByRef(type, refId) {
+    try {
+      const res = await fetch(`${API_BASE}/bookmarks/ref/${encodeURIComponent(type)}/${encodeURIComponent(refId)}`, { method: 'DELETE' });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
   }
 };
 
