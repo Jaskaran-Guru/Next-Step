@@ -235,3 +235,4 @@ const NotificationsView = {
 };
 
 window.NotificationsView = NotificationsView;
+

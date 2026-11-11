@@ -409,7 +409,7 @@ router.post('/:id/roadmap', async (req, res) => {
     }
   } catch (_) {}
 
-  // Fallback roadmap
+  // Rule-based expert response system for study roadmap
   const phases = Array.from({ length: Math.min(monthsAvailable, 6) }, (_, i) => ({
     month: i + 1,
     title: i === 0 ? 'Foundation & Concept Building' : i === monthsAvailable - 1 ? 'Revision & Mock Tests' : `Deep Practice – Phase ${i + 1}`,
@@ -418,7 +418,78 @@ router.post('/:id/roadmap', async (req, res) => {
     tip: ['Start with basics', 'Mix subjects daily', 'Track weak areas', 'Revise regularly', 'Full mock tests', 'Stay calm and confident'][i] || 'Keep going!'
   }));
 
-  res.json({ success: true, examId: exam.id, examName: exam.name, monthsAvailable, roadmap: { phases }, source: 'fallback' });
+  res.json({ success: true, examId: exam.id, examName: exam.name, monthsAvailable, roadmap: { phases }, source: 'rule_based_engine' });
+});
+
+// In-memory tracked exams for the user session
+let userTrackedExams = [
+  {
+    examId: 'jee_main',
+    examName: 'JEE Main',
+    targetYear: '2025',
+    targetScore: '240/300',
+    status: 'In Preparation',
+    trackedAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
+  }
+];
+
+// GET /api/exams/user/tracked — list tracked exams
+router.get('/user/tracked', (req, res) => {
+  res.json({ success: true, trackedExams: userTrackedExams, total: userTrackedExams.length });
+});
+
+// POST /api/exams/:id/track — toggle tracking an exam
+router.post('/:id/track', (req, res) => {
+  const exam = EXAMS.find(e => e.id === req.params.id);
+  if (!exam) return res.status(404).json({ success: false, message: 'Exam not found' });
+
+  const existingIndex = userTrackedExams.findIndex(t => t.examId === exam.id);
+  if (existingIndex !== -1) {
+    // Untrack
+    userTrackedExams.splice(existingIndex, 1);
+    return res.json({ success: true, isTracked: false, message: `Untracked ${exam.name}`, trackedExams: userTrackedExams });
+  }
+
+  const { targetYear = '2025', targetScore = 'Top 1% Percentile' } = req.body || {};
+  const newTracked = {
+    examId: exam.id,
+    examName: exam.name,
+    targetYear,
+    targetScore,
+    status: 'In Preparation',
+    trackedAt: new Date().toISOString()
+  };
+  userTrackedExams.push(newTracked);
+  res.json({ success: true, isTracked: true, message: `Added ${exam.name} to My Target Exams`, tracked: newTracked, trackedExams: userTrackedExams });
+});
+
+// POST /api/exams — create new exam (Admin)
+router.post('/', (req, res) => {
+  const { name, fullName, category, conductedBy, icon, color, level, targetDegree, eligibility, pattern, syllabus, importantDates, officialLink, prepTips, topColleges } = req.body;
+  if (!name || !fullName || !category) {
+    return res.status(400).json({ success: false, message: 'name, fullName and category are required' });
+  }
+  const id = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+  const newExam = {
+    id,
+    name,
+    fullName,
+    category,
+    conductedBy: conductedBy || 'National Authority',
+    icon: icon || '📝',
+    color: color || '#6857F5',
+    level: level || 'National',
+    targetDegree: targetDegree || 'Undergraduate Degree',
+    eligibility: eligibility || { qualification: '10+2 or equivalent' },
+    pattern: pattern || { mode: 'Computer-Based Test (CBT)', duration: '3 hours' },
+    syllabus: syllabus || { 'Core Subjects': ['Fundamentals', 'Advanced Concepts'] },
+    importantDates: importantDates || [{ event: 'Application', date: 'TBA' }],
+    officialLink: officialLink || 'https://nta.ac.in',
+    prepTips: prepTips || ['Master core syllabus', 'Solve PYQs daily'],
+    topColleges: topColleges || ['Top National Institutions']
+  };
+  EXAMS.push(newExam);
+  res.status(201).json({ success: true, exam: newExam });
 });
 
 module.exports = router;

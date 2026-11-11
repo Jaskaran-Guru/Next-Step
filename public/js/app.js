@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await AnalyticsView.init();
   await NotificationsView.init();
   await BookmarksView.init();
+  await ExamCentreView.init();
   UniversalSearch.init();
 
   // 7. Bind Global Navigation
@@ -118,6 +119,7 @@ function switchView(viewId) {
   else if (viewId === 'parent') ParentView.init?.();
   else if (viewId === 'lifeskills') LifeSkillsView.init?.();
   else if (viewId === 'scholarships') ScholarshipsView.init?.();
+  else if (viewId === 'exam-centre') ExamCentreView.renderGrid?.();
   else if (viewId === 'planner') PlannerView.init?.();
   else if (viewId === 'community') CommunityView.init?.();
   else if (viewId === 'admin') AdminView.init?.();

@@ -457,6 +457,86 @@ const API = {
     } catch (err) {
       return { success: false, message: err.message };
     }
+  },
+
+  // ==========================================
+  // EXAM PREPARATION CENTRE
+  // ==========================================
+  async getExams(category = null) {
+    try {
+      const query = category && category !== 'All' ? `?category=${encodeURIComponent(category.toLowerCase())}` : '';
+      const res = await fetch(`${API_BASE}/exams${query}`);
+      return await res.json();
+    } catch (err) {
+      console.warn('API getExams error:', err);
+      return { success: false, exams: [], categories: [] };
+    }
+  },
+
+  async getExamCategories() {
+    try {
+      const res = await fetch(`${API_BASE}/exams/categories`);
+      return await res.json();
+    } catch (err) {
+      return { success: false, categories: [] };
+    }
+  },
+
+  async getExamDetails(id) {
+    try {
+      const res = await fetch(`${API_BASE}/exams/${encodeURIComponent(id)}`);
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  async getExamRoadmap(id, monthsAvailable = 6) {
+    try {
+      const res = await fetch(`${API_BASE}/exams/${encodeURIComponent(id)}/roadmap`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ monthsAvailable })
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  async getUserTrackedExams() {
+    try {
+      const res = await fetch(`${API_BASE}/exams/user/tracked`);
+      return await res.json();
+    } catch (err) {
+      return { success: false, trackedExams: [], total: 0 };
+    }
+  },
+
+  async toggleTrackExam(id, targetYear = '2025', targetScore = 'Top 1%') {
+    try {
+      const res = await fetch(`${API_BASE}/exams/${encodeURIComponent(id)}/track`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetYear, targetScore })
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  async createCustomExam(examData) {
+    try {
+      const res = await fetch(`${API_BASE}/exams`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(examData)
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
   }
 };
 

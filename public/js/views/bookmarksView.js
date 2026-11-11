@@ -238,3 +238,4 @@ const BookmarksManager = {
 
 window.BookmarksView = BookmarksView;
 window.BookmarksManager = BookmarksManager;
+
