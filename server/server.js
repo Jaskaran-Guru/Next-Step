@@ -65,10 +65,12 @@ app.use('/api/exams', examsRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
+  const isDbConnected = require('mongoose').connection.readyState === 1;
   res.json({
-    status: 'ONLINE',
+    status: isDbConnected ? 'HEALTHY' : 'DEGRADED',
     platform: 'NextStep OS – Complete Education, Career & Personal Development Platform',
     version: '1.0.0',
+    database: isDbConnected ? 'CONNECTED' : 'OFFLINE_FALLBACK',
     timestamp: new Date().toISOString()
   });
 });
