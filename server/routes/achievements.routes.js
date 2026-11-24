@@ -38,8 +38,8 @@ const BADGE_DEFINITIONS = [
 // Simulated earned badges for demo
 let earnedBadgeIds = ['first_login', 'first_doubt', 'first_lecture', 'first_test', 'profile_complete', 'career_explorer', 'first_dpp', 'streak_3', 'ai_search'];
 
-// GET /api/achievements/badges — all badges with earned status
-router.get('/badges', (req, res) => {
+// GET /api/achievements or /api/achievements/badges — all badges with earned status
+router.get(['/', '/badges'], (req, res) => {
   const { category } = req.query;
   let definitions = BADGE_DEFINITIONS;
   if (category) definitions = definitions.filter(b => b.category === category);
