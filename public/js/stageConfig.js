@@ -185,7 +185,7 @@ const APP_STAGE_CONFIGS = {
     saarthiSubjects: ['Full Stack Dev', 'Data Science', 'Finance', 'Aptitude'],
     navSections: [
       { title: 'SKILL BUILDING', items: ['batches', 'my-study', 'dpp', 'tests'] },
-      { title: 'CAREER & EMPLOYABILITY', items: ['careers', 'exam-centre', 'stages', 'scholarships', 'lifeskills'] },
+      { title: 'CAREER & EMPLOYABILITY', items: ['careers', 'exam-centre', 'resume-builder', 'stages', 'scholarships', 'lifeskills'] },
       { title: 'AI & RESOURCES', items: ['doubts', 'khazana'] },
       { title: 'INSIGHTS', items: ['analytics'] },
     ],
@@ -196,6 +196,7 @@ const APP_STAGE_CONFIGS = {
       { view: 'tests',        label: 'Placement Mocks',      icon: 'clipboard',    badge: 'CBT' },
       { view: 'careers',      label: 'Degree & Career Tree', icon: 'briefcase',    badge: 'PRO' },
       { view: 'exam-centre',  label: 'Govt & Higher Exams',  icon: 'award',        badge: 'GATE/UPSC' },
+      { view: 'resume-builder', label: 'ATS Resume Builder',  icon: 'file-text',    badge: 'BUILD' },
       { view: 'scholarships', label: 'Scholarships & Grants', icon: 'gift',        badge: 'AID' },
       { view: 'lifeskills',   label: 'Personality & Comm',   icon: 'zap',          badge: 'GROWTH' },
       { view: 'stages',       label: 'Career Roadmap',       icon: 'compass',      badge: '19-23' },
@@ -221,7 +222,7 @@ const APP_STAGE_CONFIGS = {
     saarthiSubjects: ['DSA & Algorithms', 'System Design', 'Aptitude', 'HR & Behavioral'],
     navSections: [
       { title: 'INTERVIEW PREP', items: ['batches', 'my-study', 'dpp', 'tests'] },
-      { title: 'CAREER & EMPLOYABILITY', items: ['careers', 'stages'] },
+      { title: 'CAREER & EMPLOYABILITY', items: ['careers', 'resume-builder', 'stages'] },
       { title: 'AI COACH & RESOURCES', items: ['doubts', 'khazana'] },
       { title: 'INSIGHTS', items: ['analytics'] },
     ],
@@ -231,6 +232,7 @@ const APP_STAGE_CONFIGS = {
       { view: 'dpp',       label: 'DSA Practice',         icon: 'check-square', badge: null },
       { view: 'tests',     label: 'Mock Interviews',      icon: 'award',       badge: 'MOCK' },
       { view: 'careers',   label: 'Career & Resume Suite', icon: 'briefcase',  badge: 'HIRE' },
+      { view: 'resume-builder', label: 'ATS Resume Builder',  icon: 'file-text',   badge: 'BUILD' },
       { view: 'doubts',    label: 'Career Coach AI',      icon: 'sparkles',    badge: 'AI' },
       { view: 'khazana',   label: 'Cheatsheets & Docs',   icon: 'archive',     badge: null },
       { view: 'stages',    label: 'Career Blueprint',     icon: 'compass',     badge: '21+' },

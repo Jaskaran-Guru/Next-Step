@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await NotificationsView.init();
   await BookmarksView.init();
   await ExamCentreView.init();
+  ResumeBuilderView.init();
   UniversalSearch.init();
 
   // 7. Bind Global Navigation
@@ -123,6 +124,7 @@ function switchView(viewId) {
   else if (viewId === 'planner') PlannerView.init?.();
   else if (viewId === 'community') CommunityView.init?.();
   else if (viewId === 'admin') AdminView.init?.();
+  else if (viewId === 'resume-builder') ResumeBuilderView.renderLivePreview?.();
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (window.lucide) window.lucide.createIcons();

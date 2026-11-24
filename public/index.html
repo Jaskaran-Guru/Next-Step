@@ -1110,6 +1110,111 @@
         </div>
       </section>
 
+      <!-- VIEW 17: INTERACTIVE ATS RESUME BUILDER -->
+      <section id="view-resume-builder" class="page-view">
+        <div class="section-header">
+          <div style="display:flex;justify-content:space-between;align-items:center;width:100%;flex-wrap:wrap;gap:12px;">
+            <div>
+              <h1 class="section-title"><i data-lucide="file-text" style="color: var(--brand-secondary);"></i> Interactive ATS Resume Builder</h1>
+              <p class="section-subtitle">Craft a high-impact, single-page technical resume optimized for applicant tracking systems with live preview</p>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-outline" id="resume-load-sample-btn" style="font-size:0.8rem;padding:7px 12px;" title="Pre-fill with top-tier engineering student profile">
+                ✨ Load Sample Profile
+              </button>
+              <button class="btn btn-outline" id="resume-clear-btn" style="font-size:0.8rem;padding:7px 12px;color:var(--text-muted);" title="Reset all fields">
+                🗑️ Clear
+              </button>
+              <button class="btn btn-outline" id="resume-copy-text-btn" style="font-size:0.8rem;padding:7px 12px;">
+                📋 Copy Text
+              </button>
+              <button class="btn btn-outline" id="resume-export-html-btn" style="font-size:0.8rem;padding:7px 12px;">
+                🌐 Export HTML
+              </button>
+              <button class="btn btn-primary" id="resume-export-pdf-btn" style="font-size:0.8rem;padding:7px 14px;">
+                🖨️ Print / Save PDF
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ATS Audit Results Container (hidden by default) -->
+        <div id="resume-ats-audit-container" style="display:none;margin-bottom:24px;"></div>
+
+        <!-- Wizard Step Tabs -->
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:20px;border-bottom:1px solid var(--border-subtle);">
+          <button class="resume-step-btn active" data-step="1" style="padding:8px 16px;border-radius:20px;border:1px solid var(--border-subtle);background:var(--brand-primary);color:#fff;font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;">
+            1. Personal Details
+          </button>
+          <button class="resume-step-btn" data-step="2" style="padding:8px 16px;border-radius:20px;border:1px solid var(--border-subtle);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;">
+            2. Education
+          </button>
+          <button class="resume-step-btn" data-step="3" style="padding:8px 16px;border-radius:20px;border:1px solid var(--border-subtle);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;">
+            3. Skills
+          </button>
+          <button class="resume-step-btn" data-step="4" style="padding:8px 16px;border-radius:20px;border:1px solid var(--border-subtle);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;">
+            4. Projects & Work
+          </button>
+          <button class="resume-step-btn" data-step="5" style="padding:8px 16px;border-radius:20px;border:1px solid var(--border-subtle);background:var(--bg-surface);color:var(--text-secondary);font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;">
+            5. Certifications
+          </button>
+        </div>
+
+        <!-- Main Split Work Area -->
+        <div class="resume-split-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:flex-start;">
+          
+          <!-- LEFT COLUMN: BUILDER FORM WIZARD -->
+          <div style="background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:24px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-subtle);padding-bottom:12px;margin-bottom:18px;">
+              <h3 id="resume-step-title" style="margin:0;font-size:1.05rem;font-weight:800;color:var(--text-primary);">
+                Step 1 of 5: Personal Details
+              </h3>
+              <span id="resume-autosave-status" style="font-size:0.75rem;color:var(--text-muted);font-weight:600;">Autosave active</span>
+            </div>
+
+            <!-- Dynamic Form Step Container -->
+            <div id="resume-form-step-container">
+              <!-- Rendered by ResumeBuilderView -->
+            </div>
+
+            <!-- Wizard Footer Navigation Buttons -->
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:16px;margin-top:20px;">
+              <button class="btn btn-outline" id="resume-prev-step-btn" style="font-size:0.82rem;padding:8px 16px;display:none;">
+                ← Previous Step
+              </button>
+              <div style="display:flex;gap:10px;margin-left:auto;">
+                <button class="btn btn-outline" id="resume-run-ats-btn" style="font-size:0.82rem;padding:8px 14px;color:var(--brand-primary);border-color:rgba(104,87,245,0.4);" title="Run AI ATS keyword & readiness check">
+                  🤖 Run ATS Audit
+                </button>
+                <button class="btn btn-primary" id="resume-next-step-btn" style="font-size:0.82rem;padding:8px 18px;">
+                  Next Step →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: LIVE ATS RESUME PREVIEW -->
+          <div style="position:sticky;top:90px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:0.85rem;font-weight:800;color:var(--text-primary);text-transform:uppercase;letter-spacing:0.04em;">
+                  👁️ Live ATS Preview
+                </span>
+                <span style="font-size:0.72rem;background:rgba(34,197,139,0.1);color:var(--status-success);padding:2px 8px;border-radius:12px;font-weight:700;">
+                  ATS Standard A4
+                </span>
+              </div>
+              <span style="font-size:0.72rem;color:var(--text-muted);">Real-time synchronized</span>
+            </div>
+
+            <div id="resume-live-preview" style="max-height:calc(100vh - 160px);overflow-y:auto;padding-right:4px;">
+              <!-- Rendered by ResumeBuilderView -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -1485,6 +1590,7 @@
   <script src="js/views/notificationsView.js"></script>
   <script src="js/views/bookmarksView.js"></script>
   <script src="js/views/examCentreView.js"></script>
+  <script src="js/views/resumeBuilderView.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
