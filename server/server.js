@@ -75,6 +75,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// 404 handler for unknown API routes (prevents falling through to SPA HTML)
+app.all('/api/*', (req, res) => {
+  res.status(404).json({ success: false, message: `API route not found: ${req.method} ${req.originalUrl}` });
+});
+
 // Single Page Application route fallback
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicDirectory, 'index.html'));
